@@ -1,0 +1,14 @@
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+
+def index():
+    return render_template('base.html')
+
+@app.route("/listarcategoria")
+def listaCategoria():
+    return render_template('listarcategoria.html')
+
+app.run(debug=True)

@@ -1,0 +1,265 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css">
+<style>
+    /* pra garantir o gráfico Donut */
+    .chart canvas {
+        min-height: 300px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ total_produtos | default('0') }}</h3>
+                    <p>Total de Produtos</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <a href="{{ url_for('listarProdutos') }}" class="small-box-footer">Ver Lista <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{ produtos_ativos | default('0') }}</h3>
+                    <p>Produtos Ativos</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <a href="{{ url_for('listarProdutos') }}" class="small-box-footer">Ver Estoque <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ total_usuarios | default('0') }}</h3>
+                    <p>Usuários Registrados</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <a href="{{ url_for('listarUsuario') }}" class="small-box-footer">Gerenciar <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>{{ total_categorias | default('0') }}</h3>
+                    <p>Categorias</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <a href="{{ url_for('listarCategoria') }}" class="small-box-footer">Ver Categorias <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        <section class="col-lg-7 connectedSortable">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-chart-pie mr-1"></i>
+                        Vendas (Por Categoria)
+                    </h3>
+                    <div class="card-tools">
+                        <ul class="nav nav-pills ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Área</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content p-0">
+                        <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+                            <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                        </div>
+                        
+                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                            <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="col-lg-5 connectedSortable">
+            
+            <div class="card bg-gradient-primary">
+                <div class="card-header border-0">
+                    <h3 class="card-title">
+                        <i class="fas fa-map-marker-alt mr-1"></i>
+                        Visitantes
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="world-map" style="height: 250px; width: 100%;"></div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <div class="text-white">Visitantes</div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="text-white">Online</div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="text-white">Vendas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-primary text-white shadow-sm">
+                <div class="card-header border-0">
+                    <h3 class="card-title"><i class="fas fa-info mr-1"></i> Informações</h3>
+                </div>
+                <div class="card-body">
+                    <p>Gerencie produtos, categorias e usuários de forma rápida utilizando o painel completo ao lado.</p>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/jquery.vmap.usa.js"></script>
+
+<script>
+    // Usei $ do jQuery para garantir que o DOM carregou .
+    $(document).ready(function() {
+        
+        // DADOS DO FLASK
+        var labels = {{ labels_grafico | tojson }};
+        var dataValues = {{ data_grafico | tojson }};
+
+        // GRÁFICO DE ÁREA
+        var areaCanvas = document.getElementById('revenue-chart-canvas').getContext('2d');
+        var areaChart = new Chart(areaCanvas, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Produtos',
+                    backgroundColor: 'rgba(60,141,188,0.5)', 
+                    borderColor: 'rgba(60,141,188,1)',
+                    pointRadius: 3,
+                    pointColor: 'rgba(60,141,188,1)',
+                    pointStrokeColor: '#c1c7d1',
+                    data: dataValues,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { grid: { display: false } }
+                }
+            }
+        });
+
+        // GRÁFICO DONUT
+        var donutCanvas = document.getElementById('sales-chart-canvas').getContext('2d');
+        var donutChart = new Chart(donutCanvas, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: dataValues,
+                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'left'
+                    }
+                }
+            }
+        });
+
+        // força o redimensionamento do grafico pra ele não sumir quando clicar na aba
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            if (e.target.href.includes('#sales-chart')) {
+                donutChart.resize();
+            } else {
+                areaChart.resize();
+            }
+        });
+
+        // MAPA JQVMAP
+        try {
+            $('#world-map').vectorMap({
+                map: 'usa_en', // dos EUA
+                backgroundColor: 'transparent',
+                regionStyle: {
+                    initial: {
+                        fill: 'rgba(255, 255, 255, 0.7)',
+                        'fill-opacity': 1,
+                        stroke: 'rgba(0,0,0,.2)',
+                        'stroke-width': 1,
+                        'stroke-opacity': 1
+                    }
+                },
+                onRegionLabelShow: function(e, el, code) {
+                    el.html(el.html() + ': Visitantes online');
+                }
+            });
+        } catch (e) {
+            console.log("Erro ao carregar mapa: ", e);
+            $('#world-map').html('<div class="text-center text-white pt-5">Mapa indisponível</div>');
+        }
+    });
+</script>
+{% endblock %}

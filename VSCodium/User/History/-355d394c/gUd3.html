@@ -1,0 +1,43 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %} Editar Categoria {% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <h3 style="background-color: rgb(252, 247, 247);">
+        Editar Categoria</h3>
+
+
+   <div class="container">
+    <form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="nome_categoria">Nome da categoria:</label>
+        <input type="text" class="form-control" id="nome_categoria"
+        value="{{categorias.nome}}" name="nome_categoria" required>
+    </div>
+
+    <div class="form-group">
+        <label for="descricao">Descriçao:</label>class="form-control"
+        <input type="text" class="form-control" id="descricao" name="{{categorias.descricao}}" required>
+    </div>
+
+    <div class="form-group">
+    <label for="ativo">Ativo</label>
+    <select id="ativo" name="ativo" class="form-control" value="{{categoriaclass="form-control}}">
+        <option value="1">Sim</option>
+        <option value="0">Não</option>
+         
+    </select>
+</div>
+
+    <div class="form-group">
+        <label for="imagem">Imagem:</label>
+        <input type="file" id="imagem" name="imagem">
+    </div>
+    <button type="submit" class="btn btn-primary mb-w2">Cadastrar</button>
+
+    </form>
+   </div>
+ </div>
+{% endblock %}

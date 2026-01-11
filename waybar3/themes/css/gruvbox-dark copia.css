@@ -1,0 +1,115 @@
+/* Gruvbox Dark - Estilo Moderno e Transparente (Versão Corrigida) */
+
+/* --- Paleta de Cores Base (Gruvbox Dark) --- */
+@define-color bg0_h           #1d2021;
+@define-color bg0             #282828;
+@define-color bg1             #3c3836;
+@define-color bg2             #504945;
+@define-color bg3             #665c54;
+@define-color bg4             #7c6f64;
+@define-color gray            #928374;
+@define-color fg4             #a89984;
+@define-color fg3             #bdae93;
+@define-color fg2             #d5c4a1;
+@define-color fg1             #ebdbb2;
+@define-color fg0             #fbf1c7;
+@define-color red             #cc241d;
+@define-color bright_red      #fb4934;
+@define-color green           #98971a;
+@define-color bright_green    #b8bb26;
+@define-color yellow          #d79921;
+@define-color bright_yellow   #fabd2f;
+@define-color blue            #458588;
+@define-color bright_blue     #83a598;
+@define-color purple          #b16286;
+@define-color bright_purple   #d3869b;
+@define-color aqua            #689d6a;
+@define-color bright_aqua     #8ec07c;
+@define-color orange          #d65d0e;
+@define-color bright_orange   #fe8019;
+
+/* --- Configuração da Barra Principal --- */
+window#waybar {
+    background: alpha(@bg0, 0.5);
+    border-radius: 12px;
+    border: 2px solid @bg2;
+    /* A cor global foi REMOVIDA daqui para não forçar tudo a ser branco */
+    font-family: Noto Sans, FontAwesome, "Material Design Icons";
+    font-size: 14px;
+}
+
+tooltip {
+    background: @bg1;
+    border: 1px solid @bg4;
+    border-radius: 8px;
+}
+
+/* --- Estilo Geral dos Módulos (Efeito "Pílula") --- */
+#workspaces,
+#clock,
+#pulseaudio,
+#memory,
+#cpu,
+#temperature,
+#network,
+#backlight,
+#battery,
+#custom-power,
+#tray {
+    background-color: alpha(@bg0_h, 0.6);
+    padding: 2px 12px;
+    margin: 4px 4px; 
+    border-radius: 10px;
+    border: 1px solid @bg3;
+    color: @fg1; /* Cor padrão para o texto/ícone dos módulos */
+}
+
+/* --- Estilo dos Workspaces --- */
+#workspaces button {
+    color: @gray;
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 2px 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+#workspaces button:hover {
+    background-color: @bg2;
+    color: @fg1;
+}
+
+#workspaces button.focused {
+    background-color: transparent;
+    color: @bright_aqua; /* Destaque no texto/ícone, não no fundo */
+    font-weight: bold;
+    border: 1px solid @bright_aqua; /* Borda sutil para indicar foco */
+}
+
+/* --- Módulos por Estado (Cores no Ícone/Texto) --- */
+#pulseaudio.muted {
+    color: @bright_purple;
+}
+
+#battery.charging, #battery.plugged {
+    color: @bright_green;
+}
+
+#battery.warning:not(.charging) {
+    color: @bright_orange;
+}
+
+#battery.critical:not(.charging) {
+    color: @bright_red;
+    animation-name: blink;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Animação de piscar para bateria crítica */
+@keyframes blink {
+    to {
+        color: @gray;
+    }
+}

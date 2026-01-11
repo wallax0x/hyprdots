@@ -1,0 +1,227 @@
+{
+    "telemetry.sqmId": "",
+    "telemetry.machineId": "7cb975fe581bcb7011bae2e4e4a2e0dff5f302c04e39a4ebf028cbdea1716f85",
+    "telemetry.devDeviceId": "e54b10cb-5bea-4d37-845c-d5c397168fc8",
+    "backupWorkspaces": {
+        "workspaces": [],
+        "folders": [
+            {
+                "folderUri": "file:///home/mag0/Desktop/cursoETE/projeto-pi-definitivo"
+            }
+        ],
+        "emptyWindows": [
+            {
+                "backupFolder": "1767398828106"
+            }
+        ]
+    },
+    "windowControlHeight": 35,
+    "profileAssociations": {
+        "workspaces": {
+            "file:///home/mag0/Arduino/sketch_sep21a": "__default__profile__",
+            "file:///home/mag0/Downloads/appflask": "__default__profile__",
+            "file:///home/mag0/pnt-bebidas": "__default__profile__",
+            "file:///home/mag0/Downloads/bot/listeners": "__default__profile__",
+            "file:///home/mag0/Downloads/pnt-bebidas": "__default__profile__",
+            "file:///home/mag0/javascriptcurso": "__default__profile__",
+            "file:///home/mag0/Desktop/cursoETE/pnt-bebidas": "__default__profile__",
+            "file:///home/mag0/.config/hypr": "__default__profile__",
+            "file:///home/mag0/.config/waybar/modules/extras": "__default__profile__",
+            "file:///home/mag0": "__default__profile__",
+            "file:///home/mag0/Desktop/cursoETE": "__default__profile__",
+            "file:///home/mag0/Desktop/cursoETE/javascriptcurso": "__default__profile__",
+            "file:///home/mag0/Desktop/waybar": "__default__profile__",
+            "file:///home/mag0/Desktop/chat": "__default__profile__",
+            "file:///home/mag0/Desktop/cursoETE/pnt3/pnt-bebidas": "__default__profile__",
+            "file:///home/mag0/Desktop/cursoETE/pnt-bebidas/templates": "__default__profile__",
+            "file:///home/mag0/Desktop/cursoETE/pnt-bebidasori/venv": "__default__profile__",
+            "file:///home/mag0/Desktop/cursoETE/pnt-bebidasori": "__default__profile__",
+            "file:///home/mag0/Desktop/cursoETE/projeto-pi": "__default__profile__",
+            "file:///home/mag0/Desktop/cursoETE/projeto-pi-definitivo": "__default__profile__",
+            "file:///home/mag0/Desktop/jetninjas%20site": "__default__profile__",
+            "file:///home/mag0/Desktop/projeto-pi-definitivo": "__default__profile__",
+            "file:///home/mag0/Desktop/estudandogolang": "__default__profile__",
+            "file:///home/mag0/Desktop/projetogolang": "__default__profile__",
+            "file:///home/mag0/Desktop/garan-vagas": "__default__profile__",
+            "file:///home/mag0/Desktop/projetogolang/ia/Senior-Go-Engineer": "__default__profile__"
+        },
+        "emptyWindows": {
+            "1767398828106": "__default__profile__"
+        }
+    },
+    "windowsState": {
+        "lastActiveWindow": {
+            "backupPath": "/home/mag0/.config/VSCodium/Backups/1767398828106",
+            "uiState": {
+                "mode": 0,
+                "x": 0,
+                "y": 0,
+                "width": 683,
+                "height": 736
+            }
+        },
+        "openedWindows": []
+    },
+    "theme": "vs-dark",
+    "themeBackground": "#1f1f1f",
+    "windowSplash": {
+        "zoomLevel": 0,
+        "baseTheme": "vs-dark",
+        "colorInfo": {
+            "foreground": "#cccccc",
+            "background": "#1f1f1f",
+            "editorBackground": "#1f1f1f",
+            "titleBarBackground": "#181818",
+            "titleBarBorder": "#2b2b2b",
+            "activityBarBackground": "#181818",
+            "activityBarBorder": "#2b2b2b",
+            "sideBarBackground": "#181818",
+            "sideBarBorder": "#2b2b2b",
+            "statusBarBackground": "#181818",
+            "statusBarBorder": "#2b2b2b",
+            "statusBarNoFolderBackground": "#1f1f1f"
+        },
+        "layoutInfo": {
+            "sideBarSide": "left",
+            "editorPartMinWidth": 220,
+            "titleBarHeight": 35,
+            "activityBarWidth": 48,
+            "sideBarWidth": 0,
+            "auxiliaryBarWidth": 0,
+            "statusBarHeight": 22,
+            "windowBorder": false
+        }
+    },
+    "windowSplashWorkspaceOverride": {
+        "layoutInfo": {
+            "sideBarWidth": 300,
+            "auxiliaryBarWidth": 216,
+            "workspaces": {
+                "2a8a0e39b9794e3d0a11838021ed9c50": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "964d1b3d3f144025cbfc029dfd52a89f": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "faf60f9683afbd76c8d19b7b61d44c40": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "d7df68ab387f8ad548e31d60a4adcf88": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "637e0c40bccd07f2493f0e1f5a3b24e4": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "ecbbfe0f3a5232ee3b02c84993ef521f": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "b735871c416bcafbcbe9ba83a646dad5": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "83b840c2368d80364bf60d2ca45a33cc": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "6c8e76865d73491d2ef2c7e250e8fab8": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "0d8e3c589488b5a513f788b7ab9fee4d": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "9ffa25cfa0707f7d484c3dc13a31a490": {
+                    "sideBarVisible": false,
+                    "auxiliaryBarVisible": false
+                },
+                "e62471862adc0676883e2c2f7eb59ae6": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "7186e4f8d0e4f83381a89ff9df637013": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "32d0e4d13581adb861c0920e347efb45": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": true
+                },
+                "307bffd8c2dd1824c230e08d0795c05f": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "bb3a107f9abf22ce627393016498bc05": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "67298713b14677d232eeebbb9aee93c1": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "e337363f4353cbad4d386b6b3aac0c37": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "b757aabd79f81315c8905b0e387b0200": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "d62e9f4f61defbe2a13a81f310739b34": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "466472db37f355a8473bfcfa6f0fafd0": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "d640e344b1ebcd5c7f0188d2e2a27214": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "cca5cb4a40500a5d9d8dfa20360fb549": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "9ad4eb77a88370820a725f558e71f7ae": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "82b0f7a60fc13cc262cc18f9052abb82": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "6b8eefa1ec60fa5f57088e9295febf29": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "547521e20ed966b311ed2579896cb25e": {
+                    "sideBarVisible": false,
+                    "auxiliaryBarVisible": false
+                },
+                "c63243bec4a4e16b170fa599c6beb056": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "e2f9e540102d1f08495700b2a468733c": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "7cdab74cdc08b2b896f3683676f0641b": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                },
+                "8422763280a674f6225f2b7474bd0bad": {
+                    "sideBarVisible": true,
+                    "auxiliaryBarVisible": false
+                }
+            }
+        }
+    }
+}

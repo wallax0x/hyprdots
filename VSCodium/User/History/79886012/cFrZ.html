@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie sua Conta | Garanhuns Services</title>
+    
+    <!-- BOOTSTRAP 5 & ICONS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-bg: #f8f9fa;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Animação de Entrada do Card */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+            background: white;
+        }
+
+        .card-header-custom {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid rgba(0,0,0,0.1);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            padding: 10px 15px;
+            border: 1px solid #ced4da;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+            border-color: var(--primary-color);
+        }
+
+        /* Barra de Força da Senha */
+        .password-strength-container {
+            height: 5px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        /* Animação suave para mostrar área profissional */
+        .reveal-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s ease-out;
+            opacity: 0;
+        }
+
+        .reveal-content.active {
+            grid-template-rows: 1fr;
+            opacity: 1;
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .reveal-inner {
+            overflow: hidden;
+        }
+
+        .btn-custom {
+            padding: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card card-custom">
+                
+                <div class="card-header-custom">
+                    <h3 class="mb-0"><i class="bi bi-person-plus-fill"></i> Crie sua Conta</h3>
+                    <p class="mb-0 small opacity-75">Junte-se ao maior marketplace de Garanhuns</p>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!-- MENSAGENS FLASH (Erro/Sucesso) -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-info-circle-fill me-2"></i> {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <form method="POST" action="/cadastro" onsubmit="return validarFormulario()">
+                        
+                        <!-- Passo 1: Dados Pessoais -->
+                        <div class="mb-3">
+                            <label class="form-label">Nome Completo</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                                <input type="text" name="nome" class="form-control" placeholder="Seu nome aqui" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">CPF</label>
+                                <input type="text" name="cpf" id="cpf" class="form-control" placeholder="000.000.000-00" maxlength="14">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">WhatsApp</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-success text-white"><i class="bi bi-whatsapp"></i></span>
+                                    <input type="text" name="whatsapp" id="whatsapp" class="form-control" placeholder="(87) 99999-9999" maxlength="15">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
+                                <input type="email" name="email" class="form-control" placeholder="exemplo@email.com" required>
+                            </div>
+                        </div>
+
+                        <!-- Passo 2: Senha Segura -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Senha</label>
+                                <div class="input-group">
+                                    <input type="password" name="senha" id="senha" class="form-control" required oninput="checarForcaSenha()">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="toggleVisibilidade('senha', this)">
+                                        <i class="bi bi-eye-slash"></i>
+                                    </button>
+                                </div>
+                                <!-- Barra de Força -->
+                                <div class="password-strength-container">
+                                    <div class="password-strength-bar" id="barraForca"></div>
+                                </div>
+                                <small class="text-muted" style="font-size: 0.75rem;">Mínimo 6 caracteres</small>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Confirmar Senha</label>
+                                <div class="input-group">
+                                    <input type="password" id="confirma_senha" class="form-control" required>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="toggleVisibilidade('confirma_senha', this)">
+                                        <i class="bi bi-eye-slash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="msgErroSenha" class="text-danger small mb-3 fw-bold" style="display:none;">
+                            <i class="bi bi-exclamation-triangle"></i> As senhas não coincidem!
+                        </div>
+
+                        <!-- Passo 3: Tipo de Conta -->
+                        <div class="p-3 bg-light rounded border mb-3">
+                            <label class="form-label d-block mb-2">Qual seu objetivo?</label>
+                            
+                            <div class="d-flex gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipoCliente" value="cliente" checked onchange="toggleAreaProfissional(false)">
+                                    <label class="form-check-label" for="tipoCliente">
+                                        Contratar (Sou Cliente)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipoProfissional" value="profissional" onchange="toggleAreaProfissional(true)">
+                                    <label class="form-check-label" for="tipoProfissional">
+                                        Trabalhar (Sou Profissional)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passo 4: Área Profissional (Animada) -->
+                        <div class="reveal-content" id="areaProfissional">
+                            <div class="reveal-inner">
+                                <h6 class="text-primary fw-bold mb-3"><i class="bi bi-briefcase"></i> Dados Profissionais</h6>
+
+                                <div class="mb-3" id="divProfissao">
+    <label class="form-label fw-bold">Sua Profissão <span class="text-danger">*</span></label>
+    <div class="input-group">
+        <span class="input-group-text bg-light"><i class="bi bi-tools"></i></span>
+        <select name="profissao" class="form-select" required>
+            <option value="" selected disabled>Selecione sua especialidade...</option>
+            
+            <option value="Eletricista">⚡ Eletricista</option>
+            <option value="Pedreiro">🧱 Pedreiro</option>
+            <option value="Pintor">🖌️ Pintor</option>
+            <option value="Encanador">💧 Encanador</option>
+            <option value="Tecnologia">💻 Técnico em TI / Celular</option>
+            <option value="Limpeza">✨ Diarista / Limpeza</option>
+            
+            <option value="Jardineiro">🌿 Jardineiro</option>
+            <option value="Montador">🔧 Montador de Móveis</option>
+            <option value="Frete">🚚 Frete / Mudança</option>
+            <option value="Mecânico">🚗 Mecânico</option>
+            <option value="Manicure">💅 Manicure / Estética</option>
+            
+            <option value="Outros">Outros Serviços</option>
+        </select>
+    </div>
+    <div class="form-text">Escolha a categoria que melhor define seu serviço principal.</div>
+</div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Bairro de Atuação</label>
+                                    <select name="bairro" class="form-select">
+                                        <option value="" selected disabled>Selecione...</option>
+                                        <option value="Heliópolis">Heliópolis</option>
+                                        <option value="Magano">Magano</option>
+                                        <option value="Boa Vista">Boa Vista</option>
+                                        <option value="Cohab 1">Cohab 1</option>
+                                        <option value="Cohab 2">Cohab 2</option>
+                                        <option value="Centro">Centro</option>
+                                        <option value="Brasília">Brasília</option>
+                                        <option value="Aloísio Pinto">Aloísio Pinto</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Descrição Rápida</label>
+                                    <textarea name="descricao" class="form-control" rows="3" placeholder="Fale um pouco sobre seus serviços e experiência..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-custom w-100 shadow mt-2">
+                            Criar Minha Conta
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p class="text-muted small">Já possui cadastro? <a href="/login" class="text-primary fw-bold text-decoration-none">Faça Login</a></p>
+                        <a href="/" class="text-secondary small text-decoration-none"><i class="bi bi-arrow-left"></i> Voltar para Home</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 1. Mostrar/Esconder Senha
+    function toggleVisibilidade(idCampo, btn) {
+        const input = document.getElementById(idCampo);
+        const icon = btn.querySelector('i');
+        
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        } else {
+            input.type = "password";
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        }
+    }
+
+    // 2. Animação da Área Profissional
+    function toggleAreaProfissional(isProfissional) {
+        const area = document.getElementById('areaProfissional');
+        const inputProfissao = document.querySelector('[name="profissao"]');
+        
+        if (isProfissional) {
+            area.classList.add('active');
+            inputProfissao.required = true;
+        } else {
+            area.classList.remove('active');
+            inputProfissao.required = false;
+        }
+    }
+const tipoSelect = document.querySelector('select[name="tipo"]'); // Ou input radio se for seu caso
+    const divProfissao = document.getElementById('divProfissao'); 
+    
+    // Se o seu formulário usa SELECT para tipo de conta:
+    if(tipoSelect) {
+        tipoSelect.addEventListener('change', function() {
+            if(this.value === 'profissional') {
+                divProfissao.style.display = 'block';
+            } else {
+                divProfissao.style.display = 'none';
+            }
+        });
+    }
+    // 3. Força da Senha (Visual)
+    function checarForcaSenha() {
+        const senha = document.getElementById('senha').value;
+        const barra = document.getElementById('barraForca');
+        
+        let forca = 0;
+        if (senha.length >= 6) forca++;
+        if (senha.match(/[A-Z]/)) forca++;
+        if (senha.match(/[0-9]/)) forca++;
+        if (senha.match(/[^a-zA-Z0-9]/)) forca++;
+
+        let cor = '#e9ecef';
+        let largura = '0%';
+
+        if (senha.length > 0) {
+            if (forca <= 1) { cor = '#dc3545'; largura = '25%'; } // Fraca
+            else if (forca == 2) { cor = '#ffc107'; largura = '50%'; } // Média
+            else if (forca == 3) { cor = '#0dcaf0'; largura = '75%'; } // Boa
+            else { cor = '#198754'; largura = '100%'; } // Forte
+        }
+        
+        barra.style.backgroundColor = cor;
+        barra.style.width = largura;
+    }
+
+    // 4. Máscaras (CPF e WhatsApp)
+    document.getElementById('cpf').addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, "");
+        if (v.length > 11) v = v.slice(0, 11); // Limita tamanho
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        e.target.value = v;
+    });
+
+    document.getElementById('whatsapp').addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, "");
+        if (v.length > 11) v = v.slice(0, 11);
+        v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+        v = v.replace(/(\d)(\d{4})$/, "$1-$2");
+        e.target.value = v;
+    });
+
+    // 5. Validação Final antes de Enviar
+    function validarFormulario() {
+        const senha = document.getElementById('senha').value;
+        const confirma = document.getElementById('confirma_senha').value;
+        const erroMsg = document.getElementById('msgErroSenha');
+
+        if (senha !== confirma) {
+            erroMsg.style.display = 'block';
+            document.getElementById('confirma_senha').focus();
+            return false; // Bloqueia envio
+        }
+        
+        erroMsg.style.display = 'none';
+        return true; // Deixa enviar
+    }
+</script>
+<script>
+    // MÁSCARA PARA WHATSAPP
+    const handlePhone = (event) => {
+        let input = event.target
+        input.value = phoneMask(input.value)
+    }
+
+    const phoneMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g,'')
+        value = value.replace(/(\d{2})(\d)/,"($1) $2")
+        value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+        return value
+    }
+
+    // MÁSCARA PARA CPF
+    const handleCPF = (event) => {
+        let input = event.target
+        input.value = cpfMask(input.value)
+    }
+
+    const cpfMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g, "")
+        value = value.replace(/(\d{3})(\d)/, "$1.$2")
+        value = value.replace(/(\d{3})(\d)/, "$1.$2")
+        value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+        return value
+    }
+
+    // APLICAR NOS CAMPOS (Se existirem na página)
+    const zapInput = document.querySelector('input[name="whatsapp"]');
+    if(zapInput) zapInput.addEventListener('keyup', handlePhone);
+
+    const cpfInput = document.querySelector('input[name="cpf"]');
+    if(cpfInput) cpfInput.addEventListener('keyup', handleCPF);
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+file:///home/mag0/Desktop/cursoETE/projeto-pi-definitivo/forms.py {"mtime":1763801476230,"ctime":1763801228397,"size":1834,"etag":"3f779fnoj1s5","orphaned":false,"typeId":""}
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SelectField, FloatField, TextAreaField
+from wtforms.validators import DataRequired, Email, Length, EqualTo, ValidationError
+from validate_docbr import CPF
+import re
+
+# Validador customizado de CPF
+def validar_cpf(form, field):
+    cpf = CPF() 
+    # Remove caracteres não numéricos
+    digits = re.sub(r'\D', '', field.data)
+    if not cpf.validate(digits):
+        raise ValidationError('CPF inválido.')
+
+# Formulário de Registro
+class RegistroForm(FlaskForm):
+    name = StringField('Nome Completo', validators=[DataRequired(), Length(min=3)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    cpf = StringField('CPF', validators=[DataRequired(), validar_cpf])
+    phone = StringField('Telefone', validators=[DataRequired()])
+    cep = StringField('CEP', validators=[DataRequired(), Length(min=8, max=9)])
+    user_type = SelectField('Tipo de Conta', choices=[('client', 'Cliente'), ('professional', 'Profissional')])
+    password = PasswordField('Senha', validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField('Confirmar Senha', validators=[DataRequired(), EqualTo('password')])
+
+# Formulário de Login
+class LoginForm(FlaskForm):
+    cpf = StringField('CPF', validators=[DataRequired()])
+    password = PasswordField('Senha', validators=[DataRequired()])
+
+# Formulário de Perfil Profissional
+class PerfilProfissionalForm(FlaskForm):
+    category_id = SelectField('Categoria de Serviço', coerce=int, validators=[DataRequired()])
+    bio = TextAreaField('Sobre mim / Experiência', validators=[DataRequired(), Length(min=10)])
+    experience_years = FloatField('Anos de Experiência', validators=[DataRequired()])
+    starting_price = FloatField('Valor Inicial (R$)', validators=[DataRequired()])

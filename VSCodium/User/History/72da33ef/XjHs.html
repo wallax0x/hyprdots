@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meu Chat</title>
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; height: 95vh; }
+    #sidebar { width: 20%; border-right: 1px solid #ccc; padding: 10px; }
+    #sidebar h3 { margin-top: 0; }
+    #sidebar .room { display: block; padding: 10px; margin-bottom: 5px; cursor: pointer; background: #f0f0f0; border: none; width: 100%; text-align: left; }
+    #sidebar .room:hover, #sidebar .room.active { background: #007bff; color: white; }
+    #chat-window { flex-grow: 1; display: flex; flex-direction: column; padding: 10px; }
+    #messages { list-style-type: none; margin: 0; padding: 0; border: 1px solid #ccc; flex-grow: 1; overflow-y: scroll; }
+    #messages li { padding: 8px 12px; }
+    #messages li:nth-child(odd) { background: #f0f0f0; }
+    #form { display: flex; margin-top: 10px; }
+    #input { flex-grow: 1; border: 1px solid #ccc; padding: 10px; }
+    #form button { background: #007bff; color: white; border: none; padding: 10px; }
+  </style>
+</head>
+<body>
+  
+  <div id="sidebar">
+    <h3>Salas</h3>
+    <button class="room active" data-room="geral"># Geral</button>
+    <button class="room" data-room="dev"># Dev</button>
+    <button class="room" data-room="jogos"># Jogos</button>
+  </div>
+
+  <div id="chat-window">
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Enviar</button>
+    </form>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    // 3. Pega os elementos do HTML
+    const messages = document.getElementById('messages');
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+    const roomButtons = document.querySelectorAll('.room');
+
+    // 4. Variável para guardar a sala atual
+    let currentRoom = 'geral'; // Começa na sala 'geral' por padrão
+
+    // 5. Lógica para TROCAR de sala
+    roomButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const newRoom = button.getAttribute('data-room');
+        
+        // Se for a mesma sala, não faz nada
+        if (newRoom === currentRoom) return; 
+        
+        // Avisa o servidor que queremos trocar de sala
+        socket.emit('join_room', newRoom);
+        currentRoom = newRoom;
+
+        // Limpa as mensagens da tela
+        messages.innerHTML = '';
+        
+        // Atualiza o visual dos botões
+        document.querySelector('.room.active').classList.remove('active');
+        button.classList.add('active');
+      });
+    });
+
+    // 6. Lógica de ENVIO de mensagem (Modificada)
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (input.value) {
+        // Agora envia um objeto, incluindo a sala atual
+        socket.emit('nova_mensagem', {
+          msg: input.value,
+          room: currentRoom 
+        });
+        input.value = '';
+      }
+    });
+
+    // 7. Lógica de RECEBIMENTO de mensagem (Idêntica à Fase 2)
+    socket.on('mensagem_recebida', (msg) => {
+      const item = document.createElement('li');
+      item.textContent = msg;
+      messages.appendChild(item);
+      messages.scrollTop = messages.scrollHeight;
+    });
+  </script>
+</body>
+</html>

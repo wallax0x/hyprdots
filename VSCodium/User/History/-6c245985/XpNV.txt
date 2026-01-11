@@ -1,0 +1,60 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <circle id="ponta-estrela" cx="0" cy="-212" r="22" fill="#3e1c17" />
+    
+    <style>
+      .texto-titulo { font-family: 'Serrona', 'Georgia', serif; font-size: 56px; fill: #3e1c17; text-anchor: middle; }
+      .texto-sub { font-family: 'Bauhaus 93', 'Arial Black', sans-serif; font-size: 30px; fill: #3e1c17; letter-spacing: 5px; text-anchor: middle; font-weight: bold; }
+    </style>
+  </defs>
+
+  <circle cx="250" cy="250" r="205" fill="#3e1c17" />
+  
+  <g transform="translate(250, 250)">
+    <use href="#ponta-estrela" transform="rotate(0)" />
+    <use href="#ponta-estrela" transform="rotate(24)" />
+    <use href="#ponta-estrela" transform="rotate(48)" />
+    <use href="#ponta-estrela" transform="rotate(72)" />
+    <use href="#ponta-estrela" transform="rotate(96)" />
+    <use href="#ponta-estrela" transform="rotate(120)" />
+    <use href="#ponta-estrela" transform="rotate(144)" />
+    <use href="#ponta-estrela" transform="rotate(168)" />
+    <use href="#ponta-estrela" transform="rotate(192)" />
+    <use href="#ponta-estrela" transform="rotate(216)" />
+    <use href="#ponta-estrela" transform="rotate(240)" />
+    <use href="#ponta-estrela" transform="rotate(264)" />
+    <use href="#ponta-estrela" transform="rotate(288)" />
+    <use href="#ponta-estrela" transform="rotate(312)" />
+    <use href="#ponta-estrela" transform="rotate(336)" />
+  </g>
+
+  <circle cx="250" cy="250" r="175" fill="#ffffff" />
+
+  <circle cx="250" cy="250" r="158" fill="none" stroke="#3e1c17" stroke-width="8" />
+
+  <circle cx="250" cy="250" r="130" fill="#be9065" />
+
+  <circle cx="250" cy="250" r="95" fill="#ffffff" />
+
+  <circle cx="250" cy="250" r="65" fill="#3e1c17" />
+
+  <polygon points="
+    20,250 
+    50,215 
+    450,215 
+    480,250 
+    450,285 
+    50,285" 
+    fill="white" stroke="#3e1c17" stroke-width="3"/>
+
+  <polygon points="70,250 75,265 90,265 80,275 85,290 70,280 55,290 60,275 50,265 65,265" fill="#3e1c17" transform="translate(-5, -4)"/>
+  <polygon points="430,250 435,265 450,265 440,275 445,290 430,280 415,290 420,275 410,265 425,265" fill="#3e1c17" transform="translate(5, -4)"/>
+
+  <text x="250" y="245" class="texto-titulo">ESTRELA</text>
+
+  <text x="250" y="275" class="texto-sub">café</text>
+  
+  <rect x="180" y="266" width="25" height="5" fill="#3e1c17" />
+  <rect x="295" y="266" width="25" height="5" fill="#3e1c17" />
+
+</svg>

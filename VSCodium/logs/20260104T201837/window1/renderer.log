@@ -1,0 +1,7 @@
+2026-01-04 20:18:38.452 [info] Started local extension host with pid 11258.
+2026-01-04 20:18:39.675 [error] [xabikos.JavaScriptSnippets]: Unknown language in `contributes.JavaScriptSnippets.language`. Provided value: vue
+2026-01-04 20:18:39.982 [error] Cannot read properties of undefined (reading 'extensionId'): TypeError: Cannot read properties of undefined (reading 'extensionId')
+    at t (vscode-file://vscode-app/opt/vscodium/resources/app/out/vs/workbench/workbench.desktop.main.js:4125:2745)
+    at _Dt.recommendRemoteExtensionIfNeeded (vscode-file://vscode-app/opt/vscodium/resources/app/out/vs/workbench/workbench.desktop.main.js:4125:3497)
+2026-01-04 20:18:41.359 [info] [perf] Render performance baseline is 31ms
+2026-01-04 20:18:42.353 [info] Auto updating outdated extensions. arthurlobo.easy-codesnap

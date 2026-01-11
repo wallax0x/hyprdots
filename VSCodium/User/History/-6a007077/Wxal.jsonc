@@ -1,0 +1,9 @@
+"temperature": {
+    // Usamos o hwmon4 que encontrámos para a sua CPU (coretemp).
+    // O ficheiro "temp1_input" geralmente corresponde à temperatura do "Package id".
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "critical-threshold": 90,
+    "format-critical": "󰀦 {temperatureC}°C",
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["󱃃", "󰔏", "󱃂"]
+},

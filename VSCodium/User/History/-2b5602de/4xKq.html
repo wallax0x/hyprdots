@@ -1,0 +1,59 @@
+{{ define "dashboard.html" }}
+    {{ template "header" . }}
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-800">Painel da Empresa</h1>
+                <p class="text-slate-500">Gerencie suas vagas e visualizações</p>
+            </div>
+            <a href="/cadastro" class="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition font-medium flex items-center gap-2">
+                + Nova Vaga
+            </a>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+            <table class="w-full text-left">
+                <thead class="bg-slate-50 border-b border-slate-100 text-slate-500 text-sm uppercase">
+                    <tr>
+                        <th class="px-6 py-4 font-semibold">Título da Vaga</th>
+                        <th class="px-6 py-4 font-semibold">Tipo</th>
+                        <th class="px-6 py-4 font-semibold">Localização</th>
+                        <th class="px-6 py-4 font-semibold text-right">Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    {{ range .vagas }}
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="px-6 py-4">
+                            <p class="font-bold text-slate-800">{{ .Titulo }}</p>
+                            <p class="text-xs text-slate-500">Postado em: {{ .CreatedAt.Format "02/01/2006" }}</p>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded text-xs font-bold">{{ .Tipo }}</span>
+                        </td>
+                        <td class="px-6 py-4 text-slate-600">{{ .Localizacao }}</td>
+                        <td class="px-6 py-4 text-right">
+                            <td class="px-6 py-4 text-right">
+    <form action="/vagas/delete/{{.ID}}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta vaga?');">
+        <button type="submit" class="text-red-500 hover:text-red-700 font-medium text-sm transition bg-transparent border-none cursor-pointer">
+            Excluir
+        </button>
+    </form>
+</td>
+                        </td>
+                    </tr>
+                    {{ else }}
+                    <tr>
+                        <td colspan="4" class="px-6 py-12 text-center text-slate-400">
+                            Você ainda não postou nenhuma vaga.
+                        </td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{ template "footer" . }}
+{{ end }}

@@ -1,0 +1,30 @@
+A Extensão "Formula (typst)" falhou ao carregar porqueuma dependência não foi encontrada.
+Dependência:
+	tipo: executable
+	localização: caminho
+	frase: typst
+
+A Extensão "Optimized PNG" falhou ao carregar porqueuma dependência não foi encontrada.
+Dependência:
+	tipo: executable
+	localização: caminho
+	frase: optipng
+
+A Extensão "Formula (pdflatex)" falhou ao carregar porqueuma dependência não foi encontrada.
+Dependência:
+	tipo: executable
+	localização: caminho
+	frase: pdflatex
+
+A Extensão "Export to PDF via Scribus" falhou ao carregar porqueuma dependência não foi encontrada.
+Dependência:
+	tipo: executable
+	localização: caminho
+	frase: scribus
+
+A Extensão "XFIG Input" falhou ao carregar porqueuma dependência não foi encontrada.
+Dependência:
+	tipo: executable
+	localização: caminho
+	frase: fig2dev
+

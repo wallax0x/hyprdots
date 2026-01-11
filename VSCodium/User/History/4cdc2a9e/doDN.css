@@ -1,0 +1,49 @@
+body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 95vh; padding: 20px; }
+    
+/* --- (NOVO) Tela de Lobby --- */
+#lobby-container { text-align: center; }
+#lobby-container h2 { margin-bottom: 20px; }
+#lobby-container button { font-size: 16px; padding: 12px 24px; margin: 0 10px; cursor: pointer; }
+#lobby-status { margin-top: 20px; font-style: italic; }
+
+/* --- Container da Chamada (Vídeo + Chat) --- */
+/* Escondido por padrão */
+#call-container { display: none; flex-direction: row; gap: 20px; }
+
+/* Coluna de Vídeo */
+#video-container { width: 400px; }
+#video-container h3 { margin-top: 0; }
+video { width: 100%; background: #000; margin-bottom: 10px; border: 1px solid #ccc; }
+
+/* Coluna de Chat */
+#chat-container { width: 400px; border: 1px solid #ccc; display: flex; flex-direction: column; height: 580px; }
+#status { padding: 10px; background: #f0f0f0; text-align: center; font-style: italic; border-bottom: 1px solid #ccc; }
+#messages { list-style-type: none; margin: 0; padding: 10px; height: 400px; overflow-y: scroll; flex-grow: 1; }
+#messages li { padding: 8px 12px; margin-bottom: 5px; }
+#messages li.partner { background: #eee; text-align: left; }
+#messages li.me { background: #007bff; color: white; text-align: right; }
+#form { display: flex; border-top: 1px solid #ccc; }
+#input { flex-grow: 1; border: none; padding: 10px; }
+#form button { background: #007bff; color: white; border: none; padding: 10px 20px; }
+#form.disabled { background: #fafafa; }
+#form.disabled input, #form.disabled button { pointer-events: none; opacity: 0.5; }
+
+/* ... (todo o CSS anterior) ... */
+
+/* --- (NOVAS REGRAS PARA O BOTÃO PRÓXIMO) --- */
+#form button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0 20px; /* Ajuste no padding */
+  cursor: pointer;
+}
+
+#form #skipButton {
+  background: #ffc107; /* Cor de "aviso" (amarelo/laranja) */
+  color: #333;
+}
+
+#form #skipButton:hover {
+  background: #e0a800;
+}

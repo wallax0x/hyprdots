@@ -1,0 +1,6 @@
+2025/10/20-23:54:46.648 cb0 Reusing MANIFEST /home/mag0/.config/arduino-ide/Local Storage/leveldb/MANIFEST-000001
+2025/10/20-23:54:46.649 cb0 Recovering log #3
+2025/10/20-23:54:46.649 cb0 Reusing old log /home/mag0/.config/arduino-ide/Local Storage/leveldb/000003.log 
+2025/10/21-11:47:41.419 cb1 Level-0 table #5: started
+2025/10/21-11:47:41.426 cb1 Level-0 table #5: 20511 bytes OK
+2025/10/21-11:47:41.428 cb1 Delete type=0 #3

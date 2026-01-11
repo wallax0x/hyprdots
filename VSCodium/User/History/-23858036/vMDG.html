@@ -1,0 +1,54 @@
+{{ define "header" }}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GaranhunsJobs - Vagas de Emprego</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <nav class="bg-slate-900 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center group">
+                        <svg class="h-8 w-8 text-emerald-500 group-hover:text-emerald-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span class="ml-2 text-xl font-bold text-white group-hover:text-emerald-50 transition">GaranhunsJobs</span>
+                    </a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-150">
+                        Vagas
+                    </a>
+
+                    {{ if .isEmpresa }}
+                        <span class="text-slate-500 text-sm hidden md:inline border-l border-slate-700 pl-4">Olá, Empresa</span>
+                        <a href="/dashboard" class="text-slate-400 hover:text-white text-sm transition mr-2">Meus Anúncios</a>
+                        <a href="/cadastro" class="text-emerald-400 hover:text-emerald-300 px-3 py-2 border border-emerald-900 rounded-md text-sm">+ Vaga</a>
+                        <a href="/logout" class="text-red-400 hover:text-white ml-2 text-sm">Sair</a>
+
+                    {{ else if .isCandidato }}
+    <span class="text-blue-500 text-sm hidden md:inline border-l border-slate-700 pl-4">Olá, Candidato</span>
+    
+    <a href="/candidato/dashboard" class="text-blue-300 hover:text-white text-sm transition mr-2 font-medium">
+        Minhas Candidaturas
+    </a>
+
+    <a href="/" class="text-blue-400 hover:text-blue-300 px-3 py-2 border border-blue-900 rounded-md text-sm">
+        Ver Vagas
+    </a>
+    <a href="/logout" class="text-red-400 hover:text-white ml-2 text-sm">Sair</a>
+                    {{ else }}
+                        <a href="/login" class="text-gray-300 hover:text-white text-sm">Sou Empresa</a>
+                        <a href="/candidato/login" class="text-blue-400 hover:text-blue-300 text-sm">Sou Candidato</a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="flex-grow max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 w-full">
+{{ end }}

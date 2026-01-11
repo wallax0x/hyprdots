@@ -1,0 +1,148 @@
+/* ===================================================================
+ * Tema Catppuccin Mocha para Rofi (COM ÍCONES)
+ * Autor: Gemini (adaptado para o seu sistema)
+ * ===================================================================*/
+
+/* --- Secção de Configuração --- */
+configuration {
+    modi:                       "drun"; /* Modo para mostrar aplicações */
+    show-icons:                 true;   /* <<< ESTA É A LINHA MÁGICA! */
+    icon-theme:                 "Papirus"; /* Nome do tema de ícones que vamos instalar */
+}
+
+/* --- O Resto do Tema (inalterado) --- */
+* {
+    /* --- Cores da Paleta Catppuccin Mocha --- */
+    background:                 #1e1e2be6; /* Base com 90% de opacidade */
+    background-alt:             #181825;   /* Mantle (fundo alternativo) */
+    foreground:                 #cdd6f4;   /* Text */
+    selected:                   #89b4fa;   /* Blue (seleção) */
+    urgent:                     #f38ba8;   /* Red (urgente) */
+    active:                     #a6e3a1;   /* Green (ativo) */
+
+    /* --- Cores de Destaque --- */
+    comment:                    #6c7086;   /* Overlay0 (comentários) */
+    mauve:                      #cba6f7;   /* Mauve */
+
+    /* --- Configurações Gerais --- */
+    font:                       "JetBrains Mono 11";
+    text-color:                 @foreground;
+    background-color:           transparent; /* Torna os elementos transparentes por defeito */
+}
+
+/* --- Janela Principal --- */
+window {
+    background-color:           @background;
+    border:                     1px;
+    border-color:               @mauve;
+    border-radius:              12px;
+    width:                      500px;
+    padding:                    16px;
+    location:                   center;
+    anchor:                     center;
+    y-offset:                   -50px; /* Sobe um pouco a janela */
+}
+
+/* --- Caixa Principal (contém a entrada e a lista) --- */
+mainbox {
+    border:                     0;
+    padding:                    0;
+    children:                   [ inputbar, listview ];
+    spacing:                    10px;
+}
+
+/* --- Barra de Entrada de Texto --- */
+inputbar {
+    background-color:           @background-alt;
+    text-color:                 @selected;
+    padding:                    8px 12px;
+    border:                     0 0 1px 0;
+    border-color:               @comment;
+    border-radius:              8px;
+    children:                   [ prompt, entry ];
+}
+
+prompt {
+    enabled:                    true;
+    padding:                    0 8px 0 0;
+    text-color:                 @mauve;
+    background-color:           transparent;
+}
+
+entry {
+    background-color:           transparent;
+    placeholder:                "Pesquisar...";
+    placeholder-color:          @comment;
+    text-color:                 @selected;
+}
+
+/* --- Lista de Aplicações --- */
+listview {
+    border:                     0;
+    columns:                    1;
+    lines:                      8;
+    spacing:                    5px;
+    scrollbar:                  false;
+    fixed-height:               true;
+    dynamic:                    true;
+}
+
+/* --- Elementos da Lista (cada aplicação) --- */
+element {
+    padding:                    8px 12px;
+    border-radius:              8px;
+    orientation:                horizontal; /* Alinha o ícone e o texto horizontalmente */
+    children:                   [ element-icon, element-text ];
+}
+
+element-text {
+    background-color:           transparent;
+    text-color:                 inherit;
+    vertical-align:             0.5;
+}
+
+element-icon {
+    background-color:           transparent;
+    size:                       24px;
+    cursor:                     inherit;
+    padding:                    0 10px 0 0; /* Adiciona espaço entre o ícone e o texto */
+}
+
+/* --- Estados dos Elementos --- */
+element normal.normal {
+    background-color:           transparent;
+    text-color:                 @foreground;
+}
+
+element normal.urgent {
+    background-color:           @urgent;
+    text-color:                 @background;
+}
+
+element normal.active {
+    background-color:           @active;
+    text-color:                 @background;
+}
+
+element selected.normal {
+    background-color:           @selected;
+    text-color:                 @background-alt;
+}
+
+element selected.urgent {
+    background-color:           @urgent;
+    text-color:                 @background;
+}
+
+element selected.active {
+    background-color:           @active;
+    text-color:                 @background;
+}
+
+/* --- Mensagens de Erro --- */
+error-message {
+    padding:                    12px;
+    border-radius:              8px;
+    background-color:           @background;
+    text-color:                 @urgent;
+}

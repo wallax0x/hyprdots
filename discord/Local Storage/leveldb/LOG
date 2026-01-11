@@ -1,0 +1,6 @@
+2026/01/02-19:14:46.705 3dbb5 Reusing MANIFEST /home/mag0/.config/discord/Local Storage/leveldb/MANIFEST-000001
+2026/01/02-19:14:46.724 3dbb5 Recovering log #3
+2026/01/02-19:14:46.724 3dbb5 Reusing old log /home/mag0/.config/discord/Local Storage/leveldb/000003.log 
+2026/01/02-19:19:03.259 3dbb6 Level-0 table #5: started
+2026/01/02-19:19:03.477 3dbb6 Level-0 table #5: 4042190 bytes OK
+2026/01/02-19:19:03.487 3dbb6 Delete type=0 #3

@@ -1,0 +1,86 @@
+{{ define "home.html" }}
+    {{ template "base" . }}
+{{ end }}
+
+{{ define "content" }}
+<div class="text-center py-16 bg-white rounded-3xl shadow-sm border border-slate-100 mb-10">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+        Encontre o emprego ideal em <br>
+        <span class="text-emerald-600">Garanhuns, PE</span>
+    </h1>
+    <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+        Conectamos talentos locais às melhores empresas da Cidade das Flores. 
+        Simples, rápido e direto ao ponto.
+    </p>
+    <div class="flex justify-center gap-4">
+        <a href="/vagas" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-slate-800 transition shadow-lg hover:shadow-xl">
+            Ver Vagas Abertas 🚀
+        </a>
+        <a href="/registro" class="bg-emerald-100 text-emerald-800 px-8 py-3 rounded-xl font-bold hover:bg-emerald-200 transition border border-emerald-200">
+            Postar uma Vaga
+        </a>
+    </div>
+</div>
+
+<h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-emerald-500 pl-3">Vagas Recentes</h2>
+
+<h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-emerald-500 pl-3">Vagas Recentes</h2>
+
+<div class="grid md:grid-cols-2 gap-6">
+    {{ range .vagas }}
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition group">
+        <div class="flex justify-between items-start mb-4">
+            <div>
+                <h3 class="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition">
+                    {{ .Titulo }}
+                </h3>
+                <p class="text-sm text-slate-500">{{ .Empresa }} • {{ .Localizacao }}</p>
+            </div>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded">
+                {{ .Tipo }}
+            </span>
+        </div>
+        <p class="text-slate-600 text-sm mb-4 line-clamp-2">
+            {{ .Descricao }}
+        </p>
+        <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+            <span class="text-slate-700 font-semibold">{{ .Salario }}</span>
+            <button class="text-emerald-600 font-medium hover:underline">Ver detalhes →</button>
+        </div>
+    </div>
+    {{ else }}
+        <div class="col-span-2 text-center py-10 bg-slate-50 rounded-lg border border-dashed border-slate-300">
+            <p class="text-slate-500 text-lg">Nenhuma vaga cadastrada ainda.</p>
+            <a href="/vagas/nova" class="text-emerald-600 font-bold hover:underline mt-2 inline-block">Seja o primeiro a postar!</a>
+        </div>
+    {{ end }}
+</div>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded">CLT</span>
+        </div>
+        <p class="text-slate-600 text-sm mb-4 line-clamp-2">
+            Responsável por realizar vendas de materiais de construção, atendimento ao cliente e negociação...
+        </p>
+        <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+            <span class="text-slate-700 font-semibold">R$ 1.800,00</span>
+            <button class="text-emerald-600 font-medium hover:underline">Ver detalhes →</button>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition group">
+        <div class="flex justify-between items-start mb-4">
+            <div>
+                <h3 class="text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition">Desenvolvedor Python Júnior</h3>
+                <p class="text-sm text-slate-500">Tech Agreste • Heliópolis, Garanhuns</p>
+            </div>
+            <span class="bg-purple-100 text-purple-800 text-xs font-bold px-2 py-1 rounded">Híbrido</span>
+        </div>
+        <p class="text-slate-600 text-sm mb-4 line-clamp-2">
+            Vaga para desenvolvedor iniciante com conhecimento em Flask ou Django para atuar em sistemas web...
+        </p>
+        <div class="flex justify-between items-center border-t border-slate-100 pt-4">
+            <span class="text-slate-700 font-semibold">R$ 2.500,00</span>
+            <button class="text-emerald-600 font-medium hover:underline">Ver detalhes →</button>
+        </div>
+    </div>
+</div>
+{{ end }}

@@ -1,0 +1,49 @@
+# ===================================================================
+# Configuração Catppuccin Mocha para Mako
+#
+# Para aplicar, guarde este ficheiro como:
+# ~/.config/mako/config
+# ===================================================================
+
+# --- Cores da Paleta Catppuccin Mocha ---
+background-color=#1e1e2be6
+text-color=#cdd6f4
+border-color=#cba6f7
+
+# --- Cores para Notificações Críticas ---
+# (Pode descomentar e usar se quiser)
+#[urgency=high]
+#border-color=#f38ba8
+#text-color=#f38ba8
+#default-timeout=0
+
+# --- Configurações Gerais ---
+font=JetBrains Mono 11
+width=350
+height=100
+margin=10
+padding=15
+border-size=2
+border-radius=12
+layer=overlay
+
+# --- Posição no Ecrã ---
+# Posições possíveis: top-right, top-center, top-left,
+# bottom-right, bottom-center, bottom-left, center
+anchor=top-right
+
+# --- Formato da Notificação ---
+# %s -> Sumário (título)
+# %b -> Corpo da mensagem
+# %a -> Nome da aplicação
+format="<b>%s</b>\n%b"
+actions=true
+default-timeout=5000
+
+# --- Ícones ---
+# Requer que o Mako seja compilado com a USE flag "icons"
+# Se não funcionar, verifique com 'emerge -pv mako'
+icons=true
+icon-path=/usr/share/icons/Papirus-Dark
+max-icon-size=48
+

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat com Desconhecidos</title>
+  <style>
+    /* Estilos básicos para layout */
+    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: flex-start; height: 95vh; padding: 20px; gap: 20px; }
+    video { width: 100%; background: #000; margin-bottom: 10px; border: 1px solid #ccc; }
+    
+    /* Coluna de Vídeo */
+    #video-container { width: 400px; }
+    #video-container h3 { margin-top: 0; }
+
+    /* Coluna de Chat */
+    #chat-container { width: 400px; border: 1px solid #ccc; display: flex; flex-direction: column; height: 580px; }
+    #status { padding: 10px; background: #f0f0f0; text-align: center; font-style: italic; border-bottom: 1px solid #ccc; }
+    #messages { list-style-type: none; margin: 0; padding: 10px; height: 400px; overflow-y: scroll; flex-grow: 1; }
+    #messages li { padding: 8px 12px; margin-bottom: 5px; }
+    #messages li.partner { background: #eee; text-align: left; }
+    #messages li.me { background: #007bff; color: white; text-align: right; }
+    #form { display: flex; border-top: 1px solid #ccc; }
+    #input { flex-grow: 1; border: none; padding: 10px; }
+    #form button { background: #007bff; color: white; border: none; padding: 10px 20px; }
+    #form.disabled { background: #fafafa; }
+    #form.disabled input, #form.disabled button { pointer-events: none; opacity: 0.5; }
+  </style>
+</head>
+<body>
+  
+  <div id="video-container">
+    <h3>Seu Vídeo</h3>
+    <video id="localVideo" autoplay playsinline muted></video>
+    <h3>Vídeo do Parceiro</h3>
+    <video id="remoteVideo" autoplay playsinline></video>
+  </div>
+
+  <div id="chat-container">
+    <div id="status">Conectando ao servidor...</div>
+    <ul id="messages"></ul>
+    <form id="form" class="disabled" action="">
+      <input id="input" autocomplete="off" placeholder="Digite sua mensagem..." />
+      <button>Enviar</button>
+    </form>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    // --- (Elementos do Chat de Texto) ---
+    const statusDiv = document.getElementById('status');
+    const messages = document.getElementById('messages');
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+
+    // --- (NOVOS Elementos de Vídeo) ---
+    const localVideo = document.getElementById('localVideo');
+    const remoteVideo = document.getElementById('remoteVideo');
+
+    // --- (NOVAS Variáveis Globais de WebRTC) ---
+    let peerConnection; // A conexão WebRTC
+    let localStream;    // O stream da nossa câmera/microfone
+    
+    // Configuração dos servidores STUN (necessário para descobrir nosso IP "público")
+    // Vamos usar os servidores públicos do Google
+    const configuration = {
+      iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
+        { urls: 'stun:stun1.l.google.com:19302' },
+      ]
+    };
+
+    // --- (Funções do Chat de Texto - sem mudanças) ---
+    function addMessage(text, type = 'partner') {
+      const item = document.createElement('li');
+      item.className = type;
+      item.textContent = text;
+      messages.appendChild(item);
+      messages.scrollTop = messages.scrollHeight;
+    }
+    
+    // --- (Lógica de Envio de Texto - sem mudanças) ---
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!input.value) return;
+      socket.emit('nova_mensagem', input.value);
+      addMessage(input.value, 'me'); 
+      input.value = '';
+    });
+
+    // --- (Funções de WebRTC) ---
+
+    // 1. Inicia o processo de WebRTC
+    async function startWebRTC() {
+      // 1.1. Pede permissão para câmera/microfone
+      try {
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        localVideo.srcObject = localStream; // Mostra nosso vídeo localmente
+      } catch (err) {
+        console.error('Erro ao acessar mídia:', err);
+        addMessage('Erro: Não foi possível acessar sua câmera.');
+        return;
+      }
+
+      // 1.2. Cria a conexão Peer-to-Peer
+      peerConnection = new RTCPeerConnection(configuration);
+
+      // 1.3. Adiciona nossas tracks (vídeo/áudio) à conexão
+      // para que o parceiro possa recebê-las
+      localStream.getTracks().forEach(track => {
+        peerConnection.addTrack(track, localStream);
+      });
+
+      // 1.4. Ouve quando o parceiro enviar as tracks dele
+      peerConnection.ontrack = (event) => {
+        remoteVideo.srcObject = event.streams[0];
+      };
+
+      // 1.5. Ouve os "ICE candidates" (endereços de rede)
+      // e os envia para o parceiro via Socket.IO
+      peerConnection.onicecandidate = (event) => {
+        if (event.candidate) {
+          socket.emit('webrtc_ice_candidate', event.candidate);
+        }
+      };
+    }
+
+    // 2. Cria a "Oferta" (quando nós somos o "chamador")
+    async function createOffer() {
+      const offer = await peerConnection.createOffer();
+      await peerConnection.setLocalDescription(offer);
+      socket.emit('webrtc_offer', offer); // Envia a oferta para o parceiro
+    }
+    
+    // --- (Função para limpar e fechar conexão) ---
+    function stopChat() {
+      addMessage(`--- Desconectado ---`, 'partner');
+      form.classList.add('disabled'); // Desabilita o chat de texto
+      statusDiv.textContent = 'Aguardando um novo parceiro...';
+      
+      // Para o WebRTC
+      if (peerConnection) {
+        peerConnection.close();
+        peerConnection = null;
+      }
+      // Limpa o vídeo local e remoto
+      if(localStream) {
+        localStream.getTracks().forEach(track => track.stop());
+        localStream = null;
+      }
+      localVideo.srcObject = null;
+      remoteVideo.srcObject = null;
+    }
+
+    // --- (Lógica de Sinalização via Socket.IO) ---
+
+    // Eventos do chat de texto
+    socket.on('status', (msg) => { statusDiv.textContent = msg; });
+    socket.on('mensagem_recebida', (msg) => { addMessage(msg, 'partner'); });
+    socket.on('partner_disconnected', (msg) => {
+      addMessage(`--- ${msg} ---`, 'partner');
+      stopChat();
+      // O ideal é o servidor já nos colocar na fila,
+      // mas por simplicidade, o usuário teria que recarregar.
+      // Vamos tentar fazer o servidor nos recolocar na fila!
+      socket.emit('find_partner'); // Pede um novo parceiro
+    });
+
+    // Evento de início do chat (MODIFICADO)
+    socket.on('chat_start', async (data) => {
+      statusDiv.textContent = data.message;
+      form.classList.remove('disabled');
+      messages.innerHTML = '';
+
+      // Inicia o WebRTC
+      await startWebRTC(); 
+
+      // 'data.isCaller' será definido pelo servidor
+      // O primeiro a entrar na sala será o "chamador"
+      if (data.isCaller) {
+        await createOffer();
+      }
+    });
+
+    // --- (NOVOS Eventos de Sinalização WebRTC) ---
+
+    // 1. Recebemos uma oferta (temos que criar uma "resposta")
+    socket.on('webrtc_offer', async (offer) => {
+      if (!peerConnection) await startWebRTC(); // Garante que estamos prontos
+      
+      await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+      const answer = await peerConnection.createAnswer();
+      await peerConnection.setLocalDescription(answer);
+      
+      socket.emit('webrtc_answer', answer); // Envia a resposta de volta
+    });
+
+    // 2. Recebemos uma resposta (a conexão está quase pronta)
+    socket.on('webrtc_answer', async (answer) => {
+      await peerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+    });
+
+    // 3. Recebemos um "endereço de rede" (ICE candidate) do parceiro
+    socket.on('webrtc_ice_candidate', (candidate) => {
+      if (peerConnection) {
+        peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+      }
+    });
+    
+    // --- (Lógica de Inicialização) ---
+    // Pede ao servidor para encontrar um parceiro assim que conectamos
+    socket.emit('find_partner');
+    
+  </script>
+</body>
+</html>

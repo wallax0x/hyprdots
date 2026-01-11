@@ -1,0 +1,178 @@
+{% extends 'admin/base_admin.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="row mb-3">
+        <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+        </div>
+    </div>
+
+    <!-- CAIXAS SUPERIORES -->
+    <div class="row">
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info shadow">
+                <div class="inner">
+                    <h3>{{ total_produtos|default(0) }}</h3>
+                    <p>Total de Produtos</p>
+                </div>
+                <div class="icon"><i class="fas fa-box-open"></i></div>
+                <a href="{{ url_for('listarProdutos') }}" class="small-box-footer">Ver produtos <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-success shadow">
+                <div class="inner">
+                    <h3>{{ produtos_ativos|default(0) }}</h3>
+                    <p>Produtos Ativos</p>
+                </div>
+                <div class="icon"><i class="fas fa-check-circle"></i></div>
+                <a href="{{ url_for('listarProdutos') }}" class="small-box-footer">Ver estoque <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning shadow">
+                <div class="inner">
+                    <h3>{{ total_usuarios|default(0) }}</h3>
+                    <p>Usuários</p>
+                </div>
+                <div class="icon"><i class="fas fa-users"></i></div>
+                <a href="{{ url_for('listarUsuario') }}" class="small-box-footer">Gerenciar <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger shadow">
+                <div class="inner">
+                    <h3>{{ total_categorias|default(0) }}</h3>
+                    <p>Categorias</p>
+                </div>
+                <div class="icon"><i class="fas fa-tags"></i></div>
+                <a href="{{ url_for('listarCategoria') }}" class="small-box-footer">Ver categorias <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GRÁFICOS -->
+    <div class="row">
+
+        <!-- AREA + DONUT -->
+        <section class="col-lg-7">
+
+            <div class="card shadow-sm">
+                <div class="card-header border-0">
+                    <h3 class="card-title"><i class="fas fa-chart-bar mr-1"></i> Produtos por Categoria</h3>
+
+                    <ul class="nav nav-pills ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-area" data-toggle="tab">Área</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-donut" data-toggle="tab">Donut</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="tab-area">
+                            <canvas id="areaChart" height="310"></canvas>
+                        </div>
+
+                        <div class="tab-pane" id="tab-donut">
+                            <canvas id="donutChart" height="310"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- CARD LATERAL -->
+        <section class="col-lg-5">
+
+            <div class="card bg-primary text-white shadow-sm">
+                <div class="card-header border-0">
+                    <h3 class="card-title"><i class="fas fa-info mr-1"></i> Informações</h3>
+                </div>
+                <div class="card-body">
+                    <p>Gerencie produtos, categorias e usuários de forma rápida utilizando o painel completo ao lado.</p>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const labels = {{ labels_grafico | tojson }};
+    const values = {{ data_grafico | tojson }};
+
+    // ------------------ GRÁFICO ÁREA ------------------
+    const areaCtx = document.getElementById("areaChart").getContext("2d");
+    new Chart(areaCtx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Quantidade",
+                data: values,
+                borderColor: "#3c8dbc",
+                backgroundColor: "rgba(60,141,188,0.3)",
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } }
+        }
+    });
+
+    // ------------------ GRÁFICO DONUT ------------------
+    let donutChart = null;
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (event) {
+        if (event.target.hash === "#tab-donut" && !donutChart) {
+            const donutCtx = document.getElementById("donutChart").getContext("2d");
+            donutChart = new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: [
+                            "#f56954","#00a65a","#f39c12","#00c0ef",
+                            "#3c8dbc","#d2d6de","#605ca8","#ff851b"
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutout: "65%",
+                    plugins: { legend: { position: "bottom" } }
+                }
+            });
+        }
+    });
+
+});
+</script>
+{% endblock %}

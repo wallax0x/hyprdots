@@ -1,0 +1,21 @@
+# GIMP action-history
+
+(history-item "tools-airbrush" 0)
+(history-item "layers-new" 1)
+(history-item "file-quit" 0)
+(history-item "file-open" 1)
+(history-item "image-new" 1)
+(history-item "select-all" 0)
+(history-item "tools-zoom" 0)
+(history-item "patterns-refresh" 0)
+(history-item "layers-new-from-visible" 0)
+(history-item "filters-color-balance" 0)
+(history-item "help-help" 0)
+(history-item "layers-alpha-remove" 0)
+(history-item "layers-delete" 0)
+(history-item "edit-fill-fg" 0)
+(history-item "select-none" 0)
+(history-item "tools-paintbrush" 0)
+(history-item "file-save" 1)
+
+# end of action-history

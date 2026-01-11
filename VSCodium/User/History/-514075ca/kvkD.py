@@ -1,0 +1,78 @@
+from flask import Flask, render_template, url_for, redirect, request
+import sqlite3
+import base64
+app = Flask(__name__)
+
+def conexao():
+    conn = sqlite3.connect("database.db")
+    conn.row_factory = sqlite3.Row
+    return conn
+
+@app.route("/")
+def index():
+    return render_template('index.html')
+
+@app.route("/admin")
+def dashboard():
+    return render_template('admin/dashboard.html')
+
+@app.route("/listarcategoria")
+def listarCategoria():
+    conn = conexao()
+    categoria = conn.execute('select * from categoria')
+    return render_template('admin/listar_categoria.html',
+                           categorias = categoria )
+
+@app.route("/cadastrarcategoria", methods=['GET', 'POST'])
+def cadastrarCategoria():
+    if request.method == 'POST':
+        nome_categoria = request.form.get('nome_categoria')
+        descricao = request.form.get('descricao')
+        imagem = request.files.get('imagem')
+
+        if nome_categoria and imagem:
+            imagem_base64 = base64.b64encode(imagem.read()).decode('utf-8')
+
+            conn = conexao()
+            conn.execute(
+                'INSERT INTO categoria (nome, descricao, imagem) VALUES (?, ?, ?)',
+                (nome_categoria, descricao, imagem_base64)
+           )
+            conn.commit()
+            conn.close()
+
+            return redirect(url_for('listarCategoria'))  
+
+    return render_template('admin/cadastrar_categoria.html')
+
+
+
+@app.route("/editarcategoria", methods= ['GET', 'POST'])
+def editarCategoria(id):
+    conn = conexao()
+    categoria = conn.execute('select * from categoria where id=?', id)
+
+    if request.method == 'POST':
+        nome_categoria = request.form.get('nome_categoria')
+        descricao = request.form.get('descricao')
+        imagem = request.files.get('imagem')
+
+        if nome_categoria and imagem:
+            imagem_base64 = base64.b64encode(imagem.read()).decode('utf-8')
+
+            conn = conexao()
+            conn.execute(
+                'UPDATE categoria SET nome=?, descricao=?, imagem=? WHERE id=?',
+                (nome_categoria, descricao, imagem_base64, id)
+            )
+            conn.commit()
+            conn.close()
+
+            return redirect(url_for('listarCategoria'))  
+    
+    return render_template("admin/editar_categoria.html", categorias=categoria )
+
+
+
+
+app.run(debug=True)

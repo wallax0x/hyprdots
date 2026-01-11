@@ -1,0 +1,2 @@
+[2026-Jan-02 19:16:03.511 -03:00][253188:253188][info ] Logging initialized
+[2026-Jan-02 19:17:27.794 -03:00][253188:253324][info ] Long Queue Time for store 'Utils'. Task 'SetObservedGamesCallback2' executed for 63.239303ms

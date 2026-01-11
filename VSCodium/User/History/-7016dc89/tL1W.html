@@ -1,0 +1,88 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %} Detalhes: {{ categoria['nome'] }} {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="h3">Detalhes da Categoria</h1>
+        </div>
+        <div class="col text-end">
+            <a href="{{url_for('listarCategoria')}}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Voltar para a lista
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        <div class="col-md-4">
+            <div class="card">
+                <img src="data:image/jpeg;base64,{{categoria['imagem'] }}" class="card-img-top" alt="{{ categoria['nome'] }}">
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{ categoria['nome'] }}</h5>
+                    <p class="card-text">{{ categoria['descricao'] }}</p>
+                </div>
+                
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>ID:</strong> {{ categoria['id'] }}
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <strong>Status:</strong>
+                        
+                        {% if categoria['ativo'] == 'True' %}
+                            <span class="badge bg-success">Ativo</span>
+                        {% else %}
+                            <span class="badge bg-danger">Inativo</span>
+                        {% endif %}
+                        
+                    </li>
+                </ul>
+                
+                <div class="card-body text-end">
+                    <a href="{{ url_for('editarCategoria', id=categoria['id']) }}" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Editar Categoria
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Produtos nesta Categoria ({{ produtos|length }})</strong>
+                </div>
+                <div class="card-body">
+                    
+                    {% if produtos %}
+                        <ul class="list-group">
+                            {% for p in produtos %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <img src="data:image/jpeg;base64,{{p['imagem'] }}" width="40" class="me-2 rounded">
+                                    <strong>{{ p['nome'] }}</strong>
+                                </div>
+                                <div>
+                                    <span class="badge bg-primary me-2">R$ {{ "%.2f"|format(p['preco']) }}</span>
+                                    
+                                    <a href="{{ url_for('editarProduto', id=p['id']) }}" class="btn btn-sm btn-outline-secondary">
+                                        Ver/Editar Produto
+                                    </a>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    
+                    {% else %}
+                        <div class="alert alert-info" role="alert">
+                            Não há produtos cadastrados nesta categoria ainda.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div> </div>
+{% endblock %}

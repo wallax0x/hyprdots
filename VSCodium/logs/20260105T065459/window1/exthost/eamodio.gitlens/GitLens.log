@@ -1,0 +1,27 @@
+2026-01-05 06:55:03.113 [info] GitLens v17.8.1 activating in VSCodium (1.106.3) on the desktop; mode=production, language='en', logLevel='warn', defaultDateLocale='null' (vscodium|someValue.machineId|someValue.sessionId)
+To enable debug logging, set `"gitlens.outputLevel": "debug"` or run "GitLens: Enable Debug Logging" from the Command Palette
+[2026-01-05 09:55:02.779] Warning(/usr/bin/git -c core.quotepath=false -c color.ui=false rev-parse --show-toplevel): fatal: not a git repository (or any of the parent directories): .git
+
+[2026-01-05 09:55:02.780] [GIT          ] [/home/mag0/.config/hypr/scripts] git rev-parse --show-toplevel • not a git repository (or any of the parent directories): .git [21ms]
+[2026-01-05 09:55:02.780] Warning(/usr/bin/git -c core.quotepath=false -c color.ui=false rev-parse --show-toplevel): fatal: not a git repository (or any of the parent directories): .git
+
+[2026-01-05 09:55:02.780] [GIT          ] [/home/mag0/Downloads] git rev-parse --show-toplevel • not a git repository (or any of the parent directories): .git [23ms]
+[2026-01-05 09:55:03.015] Warning(/usr/bin/git -c core.quotepath=false -c color.ui=false log --format=%x1E%H%x1D --summary -n1 bd5437e25a1bb7cde0ee7305bf588171ab3c7e29^ -- build_kernel.sh): fatal: bad revision 'bd5437e25a1bb7cde0ee7305bf588171ab3c7e29^'
+
+
+2026-01-05 06:55:17.951 [info] [2026-01-05 09:55:17.450] [GIT  *14465ms] [/home/mag0/Desktop/A34/compilar/android_kernel_samsung_a34x] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --summary -M --use-mailmap -m --no-min-parents -n1 bd5437e25a1bb7cde0ee7305bf588171ab3c7e29 -- [*14465ms] (slow)
+
+2026-01-05 07:02:45.570 [info] [2026-01-05 10:02:45.069] Warning(/usr/bin/git -c core.quotepath=false -c color.ui=false log --format=%x1E%H%x1D --summary -n1 bd5437e25a1bb7cde0ee7305bf588171ab3c7e29^ -- build_kernel.sh): fatal: bad revision 'bd5437e25a1bb7cde0ee7305bf588171ab3c7e29^'
+
+
+2026-01-05 07:02:56.225 [info] [2026-01-05 10:02:55.725] Warning(/usr/bin/git -c core.quotepath=false -c color.ui=false log --format=%x1E%H%x1D --summary -n1 bd5437e25a1bb7cde0ee7305bf588171ab3c7e29^ -- build_kernel.sh): fatal: bad revision 'bd5437e25a1bb7cde0ee7305bf588171ab3c7e29^'
+
+
+2026-01-05 07:02:59.814 [info] [2026-01-05 10:02:59.594] [GIT  *14537ms] [/home/mag0/Desktop/A34/compilar/android_kernel_samsung_a34x] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --summary -M --use-mailmap -m --no-min-parents -n1 bd5437e25a1bb7cde0ee7305bf588171ab3c7e29 -- [*14537ms] (slow)
+[2026-01-05 10:02:59.594] [GIT   *3874ms] [/home/mag0/Desktop/A34/compilar/android_kernel_samsung_a34x] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --summary -M --use-mailmap -m --no-min-parents -n1 bd5437e25a1bb7cde0ee7305bf588171ab3c7e29 -- [*3874ms] (slow, waiting)
+
+2026-01-05 07:05:24.907 [info] [2026-01-05 10:05:24.406] Warning(/usr/bin/git -c core.quotepath=false -c color.ui=false log --format=%x1E%H%x1D --summary -n1 bd5437e25a1bb7cde0ee7305bf588171ab3c7e29^ -- build_kernel.sh): fatal: bad revision 'bd5437e25a1bb7cde0ee7305bf588171ab3c7e29^'
+
+
+2026-01-05 07:05:39.308 [info] [2026-01-05 10:05:38.807] [GIT  *14416ms] [/home/mag0/Desktop/A34/compilar/android_kernel_samsung_a34x] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --summary -M --use-mailmap -m --no-min-parents -n1 bd5437e25a1bb7cde0ee7305bf588171ab3c7e29 -- [*14416ms] (slow)
+

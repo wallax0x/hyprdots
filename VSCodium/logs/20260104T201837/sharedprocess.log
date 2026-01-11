@@ -1,0 +1,6 @@
+2026-01-04 20:18:43.364 [info] Getting Manifest... arthurlobo.easy-codesnap
+2026-01-04 20:18:44.492 [info] Installing extension: arthurlobo.easy-codesnap {"productVersion":{"version":"1.106.37943","date":"2025-11-27T00:03:42.214Z"},"pinned":false,"operation":3,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/home/mag0/.vscode-oss/extensions/extensions.json","path":"/home/mag0/.vscode-oss/extensions/extensions.json","scheme":"vscode-userdata"}}
+2026-01-04 20:18:45.229 [info] Extracted extension to file:///home/mag0/.vscode-oss/extensions/arthurlobo.easy-codesnap-1.37.0-universal: arthurlobo.easy-codesnap
+2026-01-04 20:18:45.240 [info] Renamed to /home/mag0/.vscode-oss/extensions/arthurlobo.easy-codesnap-1.37.0-universal
+2026-01-04 20:18:45.261 [info] Marked extension as removed arthurlobo.easy-codesnap-1.36.3-universal
+2026-01-04 20:18:45.269 [info] Extension installed successfully: arthurlobo.easy-codesnap vscode-userdata:/home/mag0/.vscode-oss/extensions/extensions.json

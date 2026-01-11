@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ChatVortex logo - transparent background
+     - Emblem (gold gradient) + carved vortex inside chat bubble
+     - Name "ChatVortex" centered below
+     Edit colors: gradient stops (#goldGradient) and text fill as needed.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="ChatVortex logo">
+  <defs>
+    <!-- Gold gradient used for the emblem -->
+    <linearGradient id="goldGradient" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffd97a"/>
+      <stop offset="45%" stop-color="#d9a63a"/>
+      <stop offset="100%" stop-color="#b27a2a"/>
+    </linearGradient>
+
+    <!-- Slight darker edge for carved look -->
+    <linearGradient id="goldEdge" x1="0" x2="1">
+      <stop offset="0%" stop-color="#a6782a"/>
+      <stop offset="100%" stop-color="#7a5418"/>
+    </linearGradient>
+
+    <!-- Soft drop shadow for the emblem so it reads over varied backgrounds -->
+    <filter id="emblemShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feOffset in="SourceAlpha" dx="0" dy="8" result="off"/>
+      <feGaussianBlur in="off" stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.25" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Circular mask so swirl is constrained to the bubble shape -->
+    <mask id="circleMask">
+      <rect x="0" y="0" width="600" height="600" fill="black"/>
+      <!-- white reveals -->
+      <circle cx="300" cy="220" r="118" fill="white"/>
+      <!-- keep tail revealed too -->
+      <path d="M260 320 L300 300 L320 340 Z" fill="white"/>
+    </mask>
+
+    <!-- A subtle inner carve effect using composite -->
+    <filter id="innerCarve" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="arithmetic" k1="1" k2="-1" k3="0" k4="0"/>
+    </filter>
+  </defs>
+
+  <!-- EMBLEM GROUP -->
+  <g transform="translate(0,0)" filter="url(#emblemShadow)">
+    <!-- Chat bubble main circle (no background beyond shapes) -->
+    <g id="bubble" transform="translate(0,0)">
+      <circle cx="300" cy="220" r="118" fill="url(#goldGradient)"/>
+      <!-- tail -->
+      <path d="M260 320 L300 300 L320 340 L282 318 Z" fill="url(#goldGradient)"/>
+      <!-- outer carved edge -->
+      <circle cx="300" cy="220" r="118" fill="none" stroke="url(#goldEdge)" stroke-width="6" opacity="0.75"/>
+    </g>
+
+    <!-- VORTEX (several curved arms to simulate carved spiral) -->
+    <!-- All arms are clipped/masked to the bubble shape so they look inset -->
+    <g mask="url(#circleMask)">
+      <!-- back arms -->
+      <path d="M300 220
+               c40 -60 110 -44 120 -8
+               c-18 8 -45 20 -80 26"
+            fill="none" stroke="#7b4f17" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+      <path d="M300 220
+               c-36 -40 -92 -40 -108 -8
+               c20 6 48 16 82 22"
+            fill="none" stroke="#8a5d22" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+
+      <!-- front arms (lighter gold) -->
+      <path d="M300 220
+               c28 40 14 90 -18 118
+               c-6 -22 -10 -46 6 -82"
+            fill="none" stroke="url(#goldGradient)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M300 220
+               c8 -18 36 -36 64 -34
+               c-6 16 -18 34 -36 46"
+            fill="none" stroke="url(#goldGradient)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- small inner swirl for depth -->
+      <path d="M300 220
+               c6 10 12 18 2 32
+               c-10 -8 -12 -14 -6 -28"
+            fill="none" stroke="#fff3d6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+
+      <!-- subtle carved cut-lines for 'talhada' look -->
+      <path d="M300 132 c40 28 64 68 72 108" fill="none" stroke="#7a5a2a" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+      <path d="M230 180 c18 -8 44 -6 70 2" fill="none" stroke="#7a5a2a" stroke-width="5" stroke-linecap="round" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- NAME -->
+  <!-- Default fill is white (like your example). If you need a different color, change the 'fill' below. -->
+  <text x="300" y="460" text-anchor="middle" font-family="Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="600" font-size="56" letter-spacing="1.2" fill="#ffffff" style="filter: none;">
+    ChatVortex
+  </text>
+
+  <!-- optional small baseline highlight to emphasize carved style -->
+  <text x="300" y="462.5" text-anchor="middle" font-family="Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="600" font-size="56" letter-spacing="1.2" fill="rgba(0,0,0,0.12)">
+    ChatVortex
+  </text>
+
+  <!-- transparent background by design (no rect covering the canvas) -->
+</svg>

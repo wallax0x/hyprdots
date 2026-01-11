@@ -1,0 +1,13 @@
+# GIMP gimp-vector-tool options
+
+(foreground
+    (color "R'G'B'A double" 32 "\0\0\0\240\243\235\315\77\0\0\0\40\30\30\210\77\0\0\0\40\30\30\210\77\0\0\0\0\0\0\360\77" 0))
+(background
+    (color "R'G'B'A double" 32 "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\360\77" 0))
+(brush "Acrylic 01")
+(dynamics "Pressure Size")
+(pattern "Nops")
+(gradient "Standard")
+(palette "Standard")
+
+# end of gimp-vector-tool options

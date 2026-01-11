@@ -1,0 +1,326 @@
+
+󰣨 mag0 ~/Desktop/isos we  23:52  ❯ adb shell logcat -b all | grep -i bluetooth
+11-24 23:33:53.678  1749  3629 I wm_create_activity: [0,105471484,3070,com.android.settings/.bluetooth.RequestPermissionActivity,android.bluetooth.adapter.action.REQUEST_ENABLE,NULL,NULL,8388608,startActivityAsUser:com.xiaomi.wearable:-1]
+11-24 23:33:54.034  1749  2402 I wm_restart_activity: [0,105471484,3070,com.android.settings/.bluetooth.RequestPermissionActivity]
+11-24 23:33:54.039  1749  2402 I wm_set_resumed_activity: [0,com.android.settings/.bluetooth.RequestPermissionActivity,realStartActivityLocked - onActivityStateChanged]
+11-24 23:33:54.322 24511 24511 I wm_on_create_called: [105471484,com.android.settings.bluetooth.RequestPermissionActivity,performCreate,158]
+11-24 23:33:54.337 24511 24511 I wm_on_start_called: [105471484,com.android.settings.bluetooth.RequestPermissionActivity,handleStartActivity,2]
+11-24 23:33:54.340 24511 24511 I wm_on_resume_called: [105471484,com.android.settings.bluetooth.RequestPermissionActivity,RESUME_ACTIVITY,1]
+11-24 23:33:54.349 24511 24511 I wm_on_top_resumed_gained_called: [105471484,com.android.settings.bluetooth.RequestPermissionActivity,topStateChangedWhenResumed]
+11-24 23:33:54.369  1749  2088 I input_focus: [Focus request 2903645 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=UpdateInputWindows]
+11-24 23:33:54.476 24511 24511 I wm_on_idle_called: {com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity}
+11-24 23:33:54.476  1749  5497 I wm_idle_activity: [0,105471484,com.android.settings/.bluetooth.RequestPermissionActivity]
+11-24 23:33:54.480  1749  2084 I sysui_multi_action: [319,929,322,904,325,760,757,761,758,8,759,2,806,com.android.settings,871,com.android.settings.bluetooth.RequestPermissionActivity,904,com.xiaomi.wearable,905,0,1320,4,1321,20]
+11-24 23:33:54.481  1749  2084 I am_app_transition: [com.android.settings,com.android.settings.bluetooth.RequestPermissionActivity,WINDOWS_DRAWN(2),929,-1,-1,904,WARM(8),verify(4)]
+11-24 23:33:54.484  1749  2084 I wm_activity_launch_time: [0,105471484,com.android.settings/.bluetooth.RequestPermissionActivity,904]
+11-24 23:33:54.528  1749  2524 I input_focus: [Focus entering 2903645 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=Window became focusable. Previous reason: NOT_VISIBLE]
+11-24 23:33:55.682  1749  2524 I input_interaction: Interaction with: 2903645 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity, [Gesture Monitor] PalmMotion, [Gesture Monitor] swipe-up, [Gesture Monitor] edge-swipe, [Gesture Monitor] secinputdev, PointerEventDispatcher0, 
+11-24 23:33:55.915  1749  2105 I am_proc_start: [0,3733,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:33:55.968  1749  5558 I am_proc_bound: [0,3733,com.android.bluetooth]
+11-24 23:33:56.001  1749  2088 I input_focus: [Focus request 17b4247 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=UpdateInputWindows]
+11-24 23:33:56.062  1749  2524 I input_focus: [Focus entering 17b4247 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=Window became focusable. Previous reason: NOT_VISIBLE]
+11-24 23:33:58.796  1749  5497 I wm_set_resumed_activity: [0,com.android.settings/.bluetooth.RequestPermissionActivity,positionChildTaskAt]
+11-24 23:33:58.796  1749  5497 I wm_create_activity: [0,228853709,3070,com.android.settings/.bluetooth.RequestPermissionActivity,android.bluetooth.adapter.action.REQUEST_ENABLE,NULL,NULL,8388608,startActivityAsUser:com.xiaomi.wearable:-1]
+11-24 23:33:58.797  1749  5497 I wm_pause_activity: [0,105471484,com.android.settings/.bluetooth.RequestPermissionActivity,userLeaving=true,resumeTopActivity]
+11-24 23:33:58.800 24511 24511 I wm_on_top_resumed_lost_called: [105471484,com.android.settings.bluetooth.RequestPermissionActivity,topStateChangedWhenResumed]
+11-24 23:33:58.802 24511 24511 I wm_on_paused_called: [105471484,com.android.settings.bluetooth.RequestPermissionActivity,performPause,0]
+11-24 23:33:58.806  1749  5671 I wm_restart_activity: [0,228853709,3070,com.android.settings/.bluetooth.RequestPermissionActivity]
+11-24 23:33:58.816  1749  5671 I wm_set_resumed_activity: [0,com.android.settings/.bluetooth.RequestPermissionActivity,realStartActivityLocked - onActivityStateChanged]
+11-24 23:33:58.846  1749  2524 I input_focus: [Focus leaving 17b4247 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=Waiting for window because NO_WINDOW]
+11-24 23:33:58.886 24511 24511 I wm_on_create_called: [228853709,com.android.settings.bluetooth.RequestPermissionActivity,performCreate,54]
+11-24 23:33:58.894 24511 24511 I wm_on_start_called: [228853709,com.android.settings.bluetooth.RequestPermissionActivity,handleStartActivity,1]
+11-24 23:33:58.897 24511 24511 I wm_on_resume_called: [228853709,com.android.settings.bluetooth.RequestPermissionActivity,RESUME_ACTIVITY,1]
+11-24 23:33:58.906 24511 24511 I wm_on_top_resumed_gained_called: [228853709,com.android.settings.bluetooth.RequestPermissionActivity,topStateChangedWhenResumed]
+11-24 23:33:58.919  1749  2088 I input_focus: [Focus request a6d1be7 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=UpdateInputWindows]
+11-24 23:33:58.960  1749  2084 I wm_activity_launch_time: [0,228853709,com.android.settings/.bluetooth.RequestPermissionActivity,176]
+11-24 23:33:58.962 24511 24511 I wm_on_idle_called: {com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity}
+11-24 23:33:58.963  1749  5668 I wm_idle_activity: [0,228853709,com.android.settings/.bluetooth.RequestPermissionActivity]
+11-24 23:33:59.016  1749  2524 I input_focus: [Focus entering a6d1be7 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=Window became focusable. Previous reason: NOT_VISIBLE]
+11-24 23:33:59.347  1749  5668 I am_proc_died: [0,3733,com.android.bluetooth,-700,0,138,1158]
+11-24 23:33:59.348  1749  5668 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:33:59.354  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:34:00.750  1749  2524 I input_interaction: Interaction with: a6d1be7 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity, [Gesture Monitor] PalmMotion, [Gesture Monitor] swipe-up, [Gesture Monitor] edge-swipe, [Gesture Monitor] secinputdev, PointerEventDispatcher0, 
+11-24 23:34:00.906  1749  2105 I am_proc_start: [0,3840,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:34:00.921  1749  2088 I input_focus: [Focus request 4d80592 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=UpdateInputWindows]
+11-24 23:34:00.963  1749  5558 I am_proc_bound: [0,3840,com.android.bluetooth]
+11-24 23:34:01.003  1749  2524 I input_focus: [Focus entering 4d80592 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=Window became focusable. Previous reason: NOT_VISIBLE]
+11-24 23:34:04.196  1749  5668 I am_proc_died: [0,3840,com.android.bluetooth,-700,0,126,1168]
+11-24 23:34:04.198  1749  5668 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:34:04.207  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:34:05.455  1749  2524 I input_focus: [Focus leaving 4d80592 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=setFocusedWindow]
+11-24 23:34:05.896  1749  3465 I wm_finish_activity: [0,105471484,3070,com.android.settings/.bluetooth.RequestPermissionActivity,app-request]
+11-24 23:34:05.900  1749  3465 I wm_add_to_stopping: [0,105471484,com.android.settings/.bluetooth.RequestPermissionActivity,completeFinishing]
+11-24 23:34:06.053  1749  2087 I wm_destroy_activity: [0,105471484,3070,com.android.settings/.bluetooth.RequestPermissionActivity,finish-imm:idle]
+11-24 23:34:06.089 24511 24511 I wm_on_stop_called: [105471484,com.android.settings.bluetooth.RequestPermissionActivity,LIFECYCLER_STOP_ACTIVITY,1]
+11-24 23:34:06.103 24511 24511 I wm_on_destroy_called: [105471484,com.android.settings.bluetooth.RequestPermissionActivity,performDestroy,12]
+11-24 23:34:09.462  1749  2088 I input_focus: [Focus request 4d80592 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=UpdateInputWindows]
+11-24 23:34:09.485  1749  2524 I input_focus: [Focus entering 4d80592 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=setFocusedWindow]
+11-24 23:34:09.915  1749  2524 I input_interaction: Interaction with: 4d80592 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity, [Gesture Monitor] PalmMotion, [Gesture Monitor] swipe-up, [Gesture Monitor] edge-swipe, [Gesture Monitor] secinputdev, PointerEventDispatcher0, 
+11-24 23:34:10.014  1749  5668 I input_cancel: [4d80592 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=input channel stole pointer stream]
+11-24 23:34:10.015 24511 24511 I view_enqueue_input_event: [Motion - Cancel,com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity]
+11-24 23:34:10.052 24511 24511 I wm_on_top_resumed_lost_called: [228853709,com.android.settings.bluetooth.RequestPermissionActivity,topStateChangedWhenResumed]
+11-24 23:34:10.415  1749  2524 I input_focus: [Focus leaving 4d80592 com.android.settings/com.android.settings.bluetooth.RequestPermissionActivity,reason=setFocusedWindow]
+11-24 23:34:10.864  1749  5668 I wm_finish_activity: [0,228853709,3070,com.android.settings/.bluetooth.RequestPermissionActivity,app-request]
+11-24 23:34:10.867  1749  5668 I wm_pause_activity: [0,228853709,com.android.settings/.bluetooth.RequestPermissionActivity,userLeaving=false,finish]
+11-24 23:34:10.873 24511 24511 I wm_on_paused_called: [228853709,com.android.settings.bluetooth.RequestPermissionActivity,performPause,0]
+11-24 23:34:10.875  1749  3475 I wm_add_to_stopping: [0,228853709,com.android.settings/.bluetooth.RequestPermissionActivity,completeFinishing]
+11-24 23:34:11.318  1749  2087 I wm_destroy_activity: [0,228853709,3070,com.android.settings/.bluetooth.RequestPermissionActivity,finish-imm:idle]
+11-24 23:34:11.327 24511 24511 I wm_on_stop_called: [228853709,com.android.settings.bluetooth.RequestPermissionActivity,LIFECYCLER_STOP_ACTIVITY,0]
+11-24 23:34:11.347 24511 24511 I wm_on_destroy_called: [228853709,com.android.settings.bluetooth.RequestPermissionActivity,performDestroy,18]
+11-24 23:37:54.078  1749  2105 I am_proc_start: [0,9174,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:37:54.117  1749  2401 I am_proc_bound: [0,9174,com.android.bluetooth]
+11-24 23:37:57.497  1749  3629 I am_proc_died: [0,9174,com.android.bluetooth,-700,0,201,1082]
+11-24 23:37:57.499  1749  3629 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:37:57.502  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:37:59.570  1749  2105 I am_proc_start: [0,9440,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:37:59.608  1749  5497 I am_proc_bound: [0,9440,com.android.bluetooth]
+11-24 23:38:02.803  1749  4140 I am_proc_died: [0,9440,com.android.bluetooth,-700,0,176,1126]
+11-24 23:38:02.804  1749  4140 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:38:02.806  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:38:05.886  1749  2105 I am_proc_start: [0,9720,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:38:05.932  1749  5671 I am_proc_bound: [0,9720,com.android.bluetooth]
+11-24 23:38:09.119  1749  3999 I am_proc_died: [0,9720,com.android.bluetooth,-700,0,152,1275]
+11-24 23:38:09.120  1749  3999 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:38:09.124  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:39:22.563  1749  2105 I am_proc_start: [0,11039,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:39:22.620  1749  2401 I am_proc_bound: [0,11039,com.android.bluetooth]
+11-24 23:39:25.961  1749  1985 I am_proc_died: [0,11039,com.android.bluetooth,-700,0,210,1153]
+11-24 23:39:25.962  1749  1985 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,30000]
+11-24 23:39:25.966  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:39:49.190  1749  2105 I am_proc_start: [0,11400,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:39:49.240  1749  5664 I am_proc_bound: [0,11400,com.android.bluetooth]
+11-24 23:39:52.531  1749  5664 I am_proc_died: [0,11400,com.android.bluetooth,-700,0,233,1148]
+11-24 23:39:52.533  1749  5664 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:39:52.540  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:42:16.131  1749  2105 I am_proc_start: [0,14269,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:42:16.176  1749  3629 I am_proc_bound: [0,14269,com.android.bluetooth]
+11-24 23:42:19.606  1749  5047 I am_proc_died: [0,14269,com.android.bluetooth,-700,0,175,1323]
+11-24 23:42:19.607  1749  5047 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:42:19.613  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:43:08.458  1749  2105 I am_proc_start: [0,14766,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:43:08.508  1749  2401 I am_proc_bound: [0,14766,com.android.bluetooth]
+11-24 23:43:11.758  1749  5669 I am_proc_died: [0,14766,com.android.bluetooth,-700,0,211,1250]
+11-24 23:43:11.761  1749  5669 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:43:11.776  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:48:01.687  1749  2105 I am_proc_start: [0,22317,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:48:01.723  1749  4051 I am_proc_bound: [0,22317,com.android.bluetooth]
+11-24 23:48:05.196  1749  5047 I am_proc_died: [0,22317,com.android.bluetooth,-700,0,182,972]
+11-24 23:48:05.202  1749  5047 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:48:05.210  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:48:16.793  1749  5671 I power_partial_wake_state: [REL,8,IntentOp:.findmydevice.spot.locationreporting.BluetoothStateChangeListenerIntentOperation:com.google.android.gms]
+11-24 23:48:19.368  1749  2105 I am_proc_start: [0,23179,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:48:19.404  1749  5578 I am_proc_bound: [0,23179,com.android.bluetooth]
+11-24 23:48:22.684  1749  3146 I am_proc_died: [0,23179,com.android.bluetooth,-700,0,208,869]
+11-24 23:48:22.685  1749  3146 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,30000]
+11-24 23:48:22.689  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:49:03.381  1749  2105 I am_proc_start: [0,24221,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:49:03.472  1749  3532 I am_proc_bound: [0,24221,com.android.bluetooth]
+11-24 23:49:06.922  1749  5047 I am_proc_died: [0,24221,com.android.bluetooth,-700,0,210,844]
+11-24 23:49:06.923  1749  5047 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,20000]
+11-24 23:49:06.926  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:49:26.773  1749  2105 I am_proc_start: [0,24677,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:49:26.830  1749  3036 I am_proc_bound: [0,24677,com.android.bluetooth]
+11-24 23:49:30.132  1749  3036 I am_proc_died: [0,24677,com.android.bluetooth,-700,0,133,882]
+11-24 23:49:30.134  1749  3036 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:49:30.144  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:50:06.812  1749  2526 D KNOX_MDM_SettingsProvider: isChangeAllowed() : name = bluetooth_on
+11-24 23:50:06.837  1749  2105 I am_proc_start: [0,26064,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:50:06.837  1749  2105 I ActivityManager: Start proc 26064:com.android.bluetooth/1002 for service {com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}
+11-24 23:50:06.906  1749  1985 I am_proc_bound: [0,26064,com.android.bluetooth]
+11-24 23:50:07.033 26064 26064 E ActivityThread: Failed to find provider info for bluetooth_legacy.provider
+11-24 23:50:07.152  1749  1985 D KNOX_MDM_SettingsProvider: isChangeAllowed() : name = bluetooth_btsnoop_default_mode
+11-24 23:50:07.153  1749  1985 D SecContentProvider: called from android.uid.bluetooth:1002
+11-24 23:50:07.196   722 27769 E keystore2: system/security/keystore2/src/error.rs:185 - Rc(r#KEY_NOT_FOUND), "system/security/keystore2/src/service.rs:178: In get_key_entry, while trying to load key info. 1002, Some(\"bluetooth-key-encrypted\")"
+11-24 23:50:10.410  1749  1985 I ActivityManager: Process com.android.bluetooth (pid 26064) has died: psvc PER (156,1141)
+11-24 23:50:10.411  1749  1985 I am_proc_died: [0,26064,com.android.bluetooth,-700,0,156,1141]
+11-24 23:50:10.413  1749  1985 W ActivityManager: Scheduling restart of crashed service com.android.bluetooth/.btservice.AdapterService in 10000ms for connection
+11-24 23:50:10.413  1749  1985 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,10000]
+11-24 23:50:10.419  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:50:10.839   624   624 D io_stats: !@ Read_top(KB): droid.bluetooth:high(26064) 10172 kworker/u16:3:/(80) 3748 com.whatsapp:low(18034) 2720
+11-24 23:53:51.254  3929 23097 D BluetoothAdapter: isLeEnabled(): OFF
+11-24 23:53:51.267  3929 23097 D BluetoothAdapter: unregisterBluetoothConnectionCallback()
+
+
+11-24 23:55:17.806 24511 24511 E BluetoothEnabler: maybeEnforceRestrictions :: can not get restriction policy
+11-24 23:55:17.809 24511 24511 I sysui_multi_action: [757,853,758,4,833,3005,854,bluetooth_settings,1089,1]
+11-24 23:55:18.207 24511 24511 I BluetoothAdapter: enable()
+11-24 23:55:18.211  1749  3678 D BluetoothSystemServer: BluetoothServiceBinder: enable()
+11-24 23:55:18.211  1749  2526 D BluetoothSystemServer: BluetoothManagerService: enable(com.android.settings): mAdapter=null isBinding=false mState=OFF
+11-24 23:55:18.214  1749  2526 D SecContentProvider: query(), uri = 3 selection = isBluetoothEnabled
+11-24 23:55:18.215  1749  2526 D BluetoothSystemServer: ActiveLogs: 11-24 23:55:18.214 	Package [com.android.settings] requested to [Enable]. 	Reason is APPLICATION_REQUEST
+11-24 23:55:18.215  1749  2526 D BluetoothSystemServer: BluetoothManagerService: MESSAGE_ENABLE(quietEnable=false, isBle=false): mAdapter=null
+11-24 23:55:18.215  1749  2526 I BluetoothSystemServer: BluetoothServerProxy: setBluetoothPersistedState(1)
+11-24 23:55:18.215  1749  2526 D KNOX_MDM_SettingsProvider: isChangeAllowed() : name = bluetooth_on
+11-24 23:55:18.217  1749  2526 D BluetoothSystemServer: BluetoothManagerService: Start binding to the Bluetooth service with intent=Intent { act=android.bluetooth.IBluetooth cmp=com.android.bluetooth/.btservice.AdapterService }
+11-24 23:55:18.241  1749  2105 I am_proc_start: [0,29303,1002,com.android.bluetooth,service,{com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}]
+11-24 23:55:18.242  1749  2105 I ActivityManager: Start proc 29303:com.android.bluetooth/1002 for service {com.android.bluetooth/com.android.bluetooth.btservice.AdapterService}
+11-24 23:55:18.269 29303 29303 I droid.bluetooth: Using CollectorTypeCMC GC.
+11-24 23:55:18.271 29303 29303 E droid.bluetooth: Not starting debugger since process cannot load the jdwp agent.
+11-24 23:55:18.274 29303 29303 W droid.bluetooth: Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: activity
+11-24 23:55:18.295  1749  3678 I am_proc_bound: [0,29303,com.android.bluetooth]
+11-24 23:55:18.324 29303 29303 W droid.bluetooth: ClassLoaderContext classpath size mismatch. expected=2, found=0 (PCL[/system/framework/com.android.location.provider.jar*1570284764:/system/framework/knoxanalyticssdk.jar*351259410] | PCL[])
+11-24 23:55:18.326 29303 29303 D nativeloader: Configuring clns-shared-9 for other apk /system/framework/mcfsdk.jar. target_sdk_version=36, uses_libraries=ALL, library_path=/apex/com.android.bt/app/Bluetooth@BP2A.250605.031.A3/lib/arm64:/apex/com.android.bt/app/Bluetooth@BP2A.250605.031.A3/Bluetooth.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64, permitted_path=/data:/mnt/expand:/data/user_de/0/com.android.bluetooth:/apex/com.android.bt/app/Bluetooth@BP2A.250605.031.A3:/system/lib64:/system_ext/lib64
+11-24 23:55:18.336 29303 29303 D nativeloader: Configuring clns-shared-10 for other apk /apex/com.android.bt/app/Bluetooth@BP2A.250605.031.A3/Bluetooth.apk. target_sdk_version=36, uses_libraries=, library_path=/apex/com.android.bt/app/Bluetooth@BP2A.250605.031.A3/lib/arm64:/apex/com.android.bt/app/Bluetooth@BP2A.250605.031.A3/Bluetooth.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64, permitted_path=/data:/mnt/expand:/data/user_de/0/com.android.bluetooth:/apex/com.android.bt/app/Bluetooth@BP2A.250605.031.A3:/system/lib64:/system_ext/lib64
+11-24 23:55:18.338 29303 29303 D nativeloader:   com_android_bt: libbluetooth_jni.so
+11-24 23:55:18.378 29303 29303 V GraphicsEnvironment: com.android.bluetooth is not listed in per-application setting
+11-24 23:55:18.378 29303 29303 V GraphicsEnvironment: com.android.bluetooth is not listed in ANGLE allowlist or settings, returning default
+11-24 23:55:18.436 29303 29303 D BluetoothAdapterApp: onCreate
+11-24 23:55:18.442 29303 29303 E ActivityThread: Failed to find provider info for bluetooth_legacy.provider
+11-24 23:55:18.462  4379  4459 I RequestManager_FLP: onOpChanged, op=0 / packageName=com.android.bluetooth
+11-24 23:55:18.472 29303 29303 I BluetoothAdapter: BluetoothAdapter() : com.android.bluetooth
+11-24 23:55:18.474 29303 29303 D BluetoothAdapterService: onCreate()
+11-24 23:55:18.477 29303 29303 I BluetoothAdapter: BluetoothAdapter() : com.android.bluetooth
+11-24 23:55:18.490 29303 29303 I BluetoothScspManager: BluetoothScspManager
+11-24 23:55:18.491 29303 29303 I BluetoothScspManager: init
+11-24 23:55:18.493 29303 29303 D BluetoothAdapterService: setAdapterService() - set service to com.android.bluetooth.btservice.AdapterService@287cfb3
+11-24 23:55:18.496 29303 29303 D BluetoothAdapterService: Broadcasting [updateAdapterState(OFF, OFF)] to 0 receivers.
+11-24 23:55:18.497 29303 29303 D BluetoothAdapterService: onBind()
+11-24 23:55:18.498  1749  1749 D BluetoothSystemServer: BluetoothManagerService: ServiceConnection.onServiceConnected(com.android.bluetooth.btservice.AdapterService, android.os.BinderProxy@40b83a5)
+11-24 23:55:18.498  1749  2526 D BluetoothSystemServer: BluetoothManagerService: MESSAGE_BLUETOOTH_SERVICE_CONNECTED: service=android.os.BinderProxy@40b83a5
+11-24 23:55:18.502  1749  2526 D BluetoothSystemServer: BluetoothManagerService: offToBleOn: Sending request
+11-24 23:55:18.503  1749  2526 D BluetoothSystemServer: BluetoothManagerService: broadcastIntentStateChange: action=BLE_STATE_CHANGED prevState=OFF newState=BLE_TURNING_ON
+11-24 23:55:18.513  1749  1749 D BluetoothAdapter: isLeEnabled(): BLE_TURNING_ON
+11-24 23:55:18.516  3929 26696 D BluetoothAdapter: isLeEnabled(): BLE_TURNING_ON
+11-24 23:55:18.517  1749  2526 D BluetoothSystemServer: BluetoothManagerService: Broadcasting sendStateChangedCallback(14) to 18 receivers.
+11-24 23:55:18.517  5381  5402 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.518  1749  1749 D SemWifiApIntentHandler: rcvd:com.samsung.bluetooth.adapter.action.BLE_STATE_CHANGED
+11-24 23:55:18.518  1749  1749 D DexMcfManager: onReceive intent.getAction():com.samsung.bluetooth.adapter.action.BLE_STATE_CHANGED
+11-24 23:55:18.518 22898 22907 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.518 20299 20895 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.519  3929  7337 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.519  4526  4540 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.520 18034 18052 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.523 24553 24595 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.523  7116  7164 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.524  1749  2526 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.524  8349  9760 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.524  2906  3796 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.525  8447 10517 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.525  7138  7156 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.525  1749  2526 D BluetoothSystemServer: BluetoothManagerService: Broadcasting sendBluetoothServiceUpCallback() to 18 receivers.
+11-24 23:55:18.525 29303 29312 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.526  3929  7337 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@3e3e115
+11-24 23:55:18.526  4526  4540 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@7923ee3
+11-24 23:55:18.526 24553 24595 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@aaa7f5b
+11-24 23:55:18.526 22898 22907 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@1d55859
+11-24 23:55:18.527 18034 18052 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@c0949da
+11-24 23:55:18.527  3402  3424 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.527 20299 20895 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@d53804b
+11-24 23:55:18.527  2936  3022 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.527  5381  5402 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@f99318f
+11-24 23:55:18.525 24511 24551 D BluetoothAdapter: onStateChanged 14
+11-24 23:55:18.528  8349  9760 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@c489440
+11-24 23:55:18.528  1749  2526 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@40b83a5
+11-24 23:55:18.528  7116  7164 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@77e5471
+11-24 23:55:18.529  2906  3796 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@abb1ad8
+11-24 23:55:18.529  3402  3424 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@67208d3
+11-24 23:55:18.529  2936  3022 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@440996d
+11-24 23:55:18.530  8447 10517 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@7450c72
+11-24 23:55:18.530  7138  7156 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@26c11f7
+11-24 23:55:18.530 24511 24551 D BluetoothAdapter: onBluetoothServiceUp: android.os.BinderProxy@79106f8
+11-24 23:55:18.530  1749  2526 W Binder  : 	at android.bluetooth.IBluetooth$Stub$Proxy.addDutApp(IBluetooth.java:8245)
+11-24 23:55:18.530  1749  2526 W Binder  : 	at com.android.server.bluetooth.AdapterBinder.addDutApp(qb/102273520 0610916d06668ac031630072f48ddd062a5894bfe3634276987e69dd7d044d91:6)
+11-24 23:55:18.530  1749  2526 W Binder  : 	at com.android.server.bluetooth.BluetoothManagerService$BluetoothHandler.handleMessage(qb/102273520 0610916d06668ac031630072f48ddd062a5894bfe3634276987e69dd7d044d91:48)
+11-24 23:55:18.530 29303 29312 D BluetoothAdapter: onBluetoothServiceUp: com.android.bluetooth.btservice.AdapterServiceBinder@5c7f4e9
+11-24 23:55:18.531 29303 29311 W BluetoothAdapterService: addDutApp() :: mGattService is null
+11-24 23:55:18.539 29303 29313 I BluetoothAdapterService: offToBleOn() - Enable called with quiet mode status =  false
+11-24 23:55:18.539 29303 29313 D BluetoothAdapterService: sarBackoffEnable()
+11-24 23:55:18.539 29303 29313 E BluetoothAdapterService: SensorManager is null
+11-24 23:55:18.539 29303 29303 D BluetoothAdapterService: init()
+11-24 23:55:18.552 29303 29313 D SensorManager: registerListener :: 33554443, ISG5320A Grip sensor, 200000, 0, com.android.bluetooth.btservice.AdapterService$9@6a1f6a5
+11-24 23:55:18.552 29303 29313 D BluetoothAdapterService: [BT SAR]Main Grip sensor registered at : 1764039318552
+11-24 23:55:18.552 29303 29313 D BluetoothAdapterService: [BT SAR]Grip_SAR_ready
+11-24 23:55:18.554 29303 29312 D BluetoothAdapterService: updateEvent call by com.android.settings, isEnable : true
+11-24 23:55:18.560 29303 29312 D BluetoothAdapterService: updateEvent - already set, update
+11-24 23:55:18.560 29303 29312 W BluetoothAdapterService: updateEvent - alreadySet is true
+11-24 23:55:18.563 29303 29312 E BluetoothAdapterService: updateEvent - update success 1
+11-24 23:55:18.565  1749  3678 D KNOX_MDM_SettingsProvider: isChangeAllowed() : name = bluetooth_btsnoop_default_mode
+11-24 23:55:18.566  1749  3678 D SecContentProvider: called from android.uid.bluetooth:1002
+11-24 23:55:18.567 29303 29303 I BluetoothMetricsLogger: setCounterMetricsAlarm()
+11-24 23:55:18.579 29303 29303 D BluetoothKeystoreService: new BluetoothKeystoreService isCommonCriteriaMode: false
+11-24 23:55:18.579 29303 29303 I BluetoothKeystoreService: ComputeDataThread: create, doEncrypt: true
+11-24 23:55:18.579 29303 29303 I BluetoothKeystoreService: ComputeDataThread: create, doEncrypt: false
+11-24 23:55:18.580 29303 29322 I BluetoothKeystoreService: ComputeDataThread: run, doEncrypt: true
+11-24 23:55:18.580 29303 29323 I BluetoothKeystoreService: ComputeDataThread: run, doEncrypt: false
+11-24 23:55:18.581 29303 29303 D BluetoothKeystoreService: start
+11-24 23:55:18.585   722 27770 E keystore2: system/security/keystore2/src/error.rs:185 - Rc(r#KEY_NOT_FOUND), "system/security/keystore2/src/service.rs:178: In get_key_entry, while trying to load key info. 1002, Some(\"bluetooth-key-encrypted\")"
+11-24 23:55:18.586 29303 29303 D BluetoothKeystoreService: loadConfigData
+11-24 23:55:18.586 29303 29322 I BluetoothKeystoreService: Interrupted while operating.
+11-24 23:55:18.586 29303 29322 I BluetoothKeystoreService: ComputeDataThread: Stop, doEncrypt: true
+11-24 23:55:18.586 29303 29323 I BluetoothKeystoreService: Interrupted while operating.
+11-24 23:55:18.586 29303 29323 I BluetoothKeystoreService: ComputeDataThread: Stop, doEncrypt: false
+11-24 23:55:18.587 29303 29303 D BluetoothKeystoreService: getCompareResult: 0
+11-24 23:55:18.592 29303 29303 D BluetoothAdapterService: Loading JNI Library
+11-24 23:55:18.647 29303 29303 I bluetooth: system/audio_hal_interface/hal_version_manager.cc:134 operator(): BluetoothAudioHal::getInterfaceVersion SEH_AIDL version2
+11-24 23:55:18.660 29303 29303 D nativeloader: Load /system/lib64/libbluetooth_jni.so using class loader ns clns-shared-10 (caller=/apex/com.android.bt/app/Bluetooth@BP2A.250605.031.A3/Bluetooth.apk): ok
+11-24 23:55:18.660 29303 29303 I BluetoothServiceJni: android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp:3586 JNI_OnLoad: Set stack default log level to 'INFO'
+11-24 23:55:18.665 29303 29303 I bt_btif : system/btif/src/bluetooth.cc:436 init: start restricted = false ; common criteria mode = false, config compare result = 0
+11-24 23:55:18.665 29303 29329 I bluetooth: system/common/message_loop_thread.cc:176 Run: message loop starting for thread bt_stack_manager_thread
+11-24 23:55:18.669 29303 29330 I bluetooth: system/common/message_loop_thread.cc:176 Run: message loop starting for thread bt_main_thread
+11-24 23:55:18.672 29303 29329 I bluetooth: system/gd/hal/snoop_logger.cc:774 SnoopLogger: Snoop Logs disabled
+11-24 23:55:18.672 29303 29329 I bluetooth: system/gd/hal/snoop_logger.cc:571 delete_btsnoop_files: Deleting logs if they exist
+11-24 23:55:18.672 29303 29329 I bluetooth: system/gd/hal/snoop_logger.cc:577 delete_btsnoop_files: Main log file does not exist at "/data/log/bt/btsnoop_hci.log.filtered"
+11-24 23:55:18.672 29303 29329 I bluetooth: system/gd/hal/snoop_logger.cc:585 delete_btsnoop_files: Last log file does not exist at "/data/log/bt/btsnoop_hci.log.filtered"
+11-24 23:55:18.672 29303 29329 I bluetooth: system/gd/hal/snoop_logger.cc:571 delete_btsnoop_files: Deleting logs if they exist
+11-24 23:55:18.672 29303 29329 I bluetooth: system/gd/hal/snoop_logger.cc:577 delete_btsnoop_files: Main log file does not exist at "/data/log/bt/btsnoop_hci.log"
+11-24 23:55:18.672 29303 29329 I bluetooth: system/gd/hal/snoop_logger.cc:585 delete_btsnoop_files: Last log file does not exist at "/data/log/bt/btsnoop_hci.log"
+11-24 23:55:18.675 29303 29329 W droid.bluetooth: AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+11-24 23:55:18.675 29303 29336 I BluetoothCounterMetrics: system/gd/metrics/counter_metrics.cc:37 Start: Counter metrics initialized
+11-24 23:55:18.680 29303 29336 I bluetooth: system/btif/src/btif_keystore.cc:58 ConvertEncryptOrDecryptKeyIfNeeded: callback isn't ready.
+11-24 23:55:18.684 29303 29336 E bluetooth: system/gd/hal/socket_hal_android.cc:93 Start: The service android.hardware.bluetooth.socket.IBluetoothSocket/default is not declared
+11-24 23:55:18.684 29303 29336 I bluetooth: system/gd/lpp/lpp_offload_manager.cc:36 start: 
+11-24 23:55:18.685 29303 29336 W droid.bluetooth: AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+11-24 23:55:18.686  1078  1078 I aidl.android.hardware.bluetooth.service.default: initialize
+11-24 23:55:18.686  1078  1078 W android.hardware.bluetooth-service-mediatek: AIBinder_linkToDeath is being called with a non-null cookie and no onUnlink callback set. This might not be intended. AIBinder_DeathRecipient_setOnUnlinked should be called first.
+11-24 23:55:18.686  1078  1078 I android.hardware.bluetooth@aidl-impl: Initialize: VendorInterface::Initialize
+11-24 23:55:18.686  1078  1078 I android.hardware.bluetooth@aidl-impl: Open: VendorInterface::Open
+11-24 23:55:18.695  1078  1078 D android.hardware.bluetooth-service-mediatek: get_local_address: Trying /mnt/vendor/efs/bluetooth/bt_addr
+11-24 23:55:18.696  1078  1078 D android.hardware.bluetooth-service-mediatek: get_local_address: Got Factory BDA D8:68:A0:C9:51:F7
+11-24 23:55:18.696  1078  1078 D android.hardware.bluetooth@aidl-impl: Open vendor library loaded
+11-24 23:55:19.068   624   624 D io_stats: !@ Read_top(KB): droid.bluetooth:high(29303) 9924 kworker/u16:0:/(27805) 5260 android.hardwar:normal(1078) 232
+11-24 23:55:20.517  3929 16703 D BluetoothAdapter: isLeEnabled(): BLE_TURNING_ON
+11-24 23:55:21.678 29303 29329 E bluetooth: system/common/message_loop_thread.cc:81 DoInThreadDelayed: message loop is null for thread bt_jni_thread(-1)
+11-24 23:55:21.678 29303 29329 E bluetooth: system/btif/src/btif_jni_task.cc:109 do_in_jni_thread: Post task to task runner failed!
+11-24 23:55:21.697  1078  1078 E android.hardware.bluetooth@aidl-impl: Open: fd -1 is invalid!
+11-24 23:55:21.723  1078  1078 E aidl.android.hardware.bluetooth.service.default: VendorInterface -> Unable to call initializationComplete(ERR)
+11-24 23:55:21.724  1078  1078 E aidl.android.hardware.bluetooth.service.default: Bluetooth remote service has died
+11-24 23:55:21.724  1078  1078 I aidl.android.hardware.bluetooth.service.default: close
+11-24 23:55:21.724  1078  1078 E android.hardware.bluetooth-service-mediatek: unlinkToDeath: removed reference to death recipient but unlink failed: DEAD_OBJECT
+11-24 23:55:21.724  1078  1078 I android.hardware.bluetooth@aidl-impl: Shutdown: VendorInterface::Shutdown
+11-24 23:55:21.724  1078  1078 I android.hardware.bluetooth@aidl-impl: Close: VendorInterface::Close
+11-24 23:55:21.726  1749  2401 I ActivityManager: Process com.android.bluetooth (pid 29303) has died: psvc PER (322,1026)
+11-24 23:55:21.726  1749  2401 I am_proc_died: [0,29303,com.android.bluetooth,-700,0,322,1026]
+11-24 23:55:21.727  1749  1749 D BluetoothSystemServer: BluetoothManagerService: ServiceConnection.onServiceDisconnected(com.android.bluetooth.btservice.AdapterService)
+11-24 23:55:21.727  1078  1078 I android.hardware.bluetooth@aidl-impl: Close: VendorInterface::Close done!!!
+11-24 23:55:21.727  1749  2526 E BluetoothSystemServer: BluetoothManagerService: MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED
+11-24 23:55:21.727  1078  1078 W android.hardware.bluetooth-service-mediatek: Unlinking to dead binder resulted in: -2
+11-24 23:55:21.729  1749  2401 W ActivityManager: Scheduling restart of crashed service com.android.bluetooth/.btservice.AdapterService in 1000ms for connection
+11-24 23:55:21.729  1749  2401 I am_schedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,1000]
+11-24 23:55:21.733  1749  2526 I am_unschedule_service_restart: [0,com.android.bluetooth/.btservice.AdapterService,0,bring down]
+11-24 23:55:21.734  1749  2526 D BluetoothSystemServer: ActiveLogs: 11-24 23:55:21.733 	Package [BluetoothSystemServer] requested to [Disable]. 	Reason is CRASH
+11-24 23:55:21.734  1749  2526 D BluetoothSystemServer: BluetoothManagerService: Broadcasting sendBluetoothServiceDownCallback() to 17 receivers.
+11-24 23:55:21.734  5381  5402 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.735 20299 20895 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.735  4526  4540 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.735 18034 18052 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.736 22898 22907 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.736  8349  9760 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.736  1749  2526 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.737 24553 24595 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.737  8447 10517 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.737 24511 24551 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.737  2936  3022 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.737 24511 24551 D SemBluetoothCastAdapter: onBluetoothStateChange : false
+11-24 23:55:21.737  3929  7337 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.737  2936  3022 D SemBluetoothCastAdapter: onBluetoothStateChange : false
+11-24 23:55:21.737 24511 24551 D SemBluetoothAudioCast: onBluetoothStateChange : false
+11-24 23:55:21.737  2936  3022 D SemBluetoothAudioCast: onBluetoothStateChange : false
+11-24 23:55:21.738  2936  3022 D SemBluetoothAudioCast: onBluetoothStateChange : false
+11-24 23:55:21.738  2936  3022 D SemBluetoothAudioCast: onBluetoothStateChange : false
+11-24 23:55:21.738  2906  3796 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.738  7138  7156 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.738  3402  3424 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.740  7116  7164 D BluetoothAdapter: onBluetoothServiceDown
+11-24 23:55:21.750  4379  4459 I RequestManager_FLP: onOpChanged, op=0 / packageName=com.android.bluetooth
+11-24 23:55:30.540  1749  2526 D BluetoothSystemServer: BluetoothManagerService: MESSAGE_RESTART_BLUETOOTH_SERVICE: retry count=22
+11-24 23:55:30.540  1749  2526 E BluetoothSystemServer: BluetoothManagerService: Reach maximum retry to restart Bluetooth!

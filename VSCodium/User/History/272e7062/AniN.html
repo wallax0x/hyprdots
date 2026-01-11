@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro - ServiçosPro{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h2>Criar Conta</h2>
+                <p class="subtitle">Cadastre-se para começar</p>
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">
+                          {{ message }}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="" id="registerForm" novalidate>
+                    {{ form.hidden_tag() }}
+
+                    <div class="form-group">
+                        {{ form.user_type.label }}
+                        {{ form.user_type(class="form-input") }}
+                        {% if form.user_type.errors %}
+                            <small class="text-error">{{ form.user_type.errors[0] }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form.name.label }}
+                        {{ form.name(class="form-input", placeholder="Seu nome completo") }}
+                        {% if form.name.errors %}
+                            <small class="text-error">{{ form.name.errors[0] }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form.email.label }}
+                        {{ form.email(class="form-input", placeholder="exemplo@email.com") }}
+                        {% if form.email.errors %}
+                            <small class="text-error">{{ form.email.errors[0] }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cpf">CPF <i class="fas fa-shield-alt text-muted"></i></label>
+                        {{ form.cpf(class="form-input", placeholder="000.000.000-00", maxlength="14") }}
+                        {% if form.cpf.errors %}
+                            <small class="text-error">{{ form.cpf.errors[0] }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form.phone.label }}
+                        {{ form.phone(class="form-input", placeholder="(00) 00000-0000") }}
+                        {% if form.phone.errors %}
+                            <small class="text-error">{{ form.phone.errors[0] }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cep">CEP <i class="fas fa-shield-alt text-muted"></i></label>
+                        {{ form.cep(class="form-input", placeholder="00000-000", maxlength="9") }}
+                        
+                        <small id="cep-loading" style="display: none; color: blue;">Buscando endereço...</small>
+                        <small id="cep-address" style="display: block; margin-top: 5px; font-weight: bold;"></small>
+                        
+                        {% if form.cep.errors %}
+                            <small class="text-error">{{ form.cep.errors[0] }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form.password.label }}
+                        {{ form.password(class="form-input") }}
+                        {% if form.password.errors %}
+                            <small class="text-error">{{ form.password.errors[0] }}</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.confirm_password.label }}
+                        {{ form.confirm_password(class="form-input") }}
+                        {% if form.confirm_password.errors %}
+                            <small class="text-error">{{ form.confirm_password.errors[0] }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-block">Cadastrar</button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Já tem uma conta? <a href="{{ url_for('login') }}">Entrar</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .text-error { color: #dc3545; font-size: 0.875em; margin-top: 5px; display: block; }
+    .alert { padding: 10px; margin-bottom: 15px; border-radius: 5px; }
+    .alert-error { background-color: #f8d7da; color: #721c24; }
+    .alert-success { background-color: #d4edda; color: #155724; }
+</style>
+
+<script>
+document.getElementById('cpf').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 11) {
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        e.target.value = value;
+    }
+});
+document.getElementById('phone').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 11) {
+        value = value.replace(/(\d{2})(\d)/, '($1) $2');
+        value = value.replace(/(\d{5})(\d)/, '$1-$2');
+        e.target.value = value;
+    }
+});
+document.getElementById('cep').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 8) {
+        value = value.replace(/(\d{5})(\d)/, '$1-$2');
+        e.target.value = value;
+    }
+});
+document.getElementById('cep').addEventListener('blur', function (e) {
+    const cep = e.target.value.replace(/\D/g, '');
+    if (cep.length === 8) {
+        document.getElementById('cep-loading').style.display = 'block';
+        document.getElementById('cep-address').textContent = '';
+        
+        // Certifique-se de ter esta rota no app.py ou a validação será só visual
+        fetch(`/api/validar-cep/${cep}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cep-loading').style.display = 'none';
+                if (data.error) {
+                    document.getElementById('cep-address').textContent = data.msg || 'CEP inválido';
+                    document.getElementById('cep-address').style.color = 'red';
+                } else {
+                    document.getElementById('cep-address').textContent = `${data.address}, ${data.neighborhood} - ${data.city}/${data.state}`;
+                    document.getElementById('cep-address').style.color = 'green';
+                }
+            })
+            .catch(() => {
+                document.getElementById('cep-loading').style.display = 'none';
+                document.getElementById('cep-address').textContent = 'Erro ao consultar CEP';
+                document.getElementById('cep-address').style.color = 'red';
+            });
+    }
+});
+</script>
+{% endblock %}

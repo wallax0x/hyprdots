@@ -1,0 +1,13 @@
+# GIMP gimp-dodge-burn-tool options
+
+(foreground
+    (color "R'G'B'A double" 32 "\0\0\0\240\243\235\315\77\0\0\0\40\30\30\210\77\0\0\0\40\30\30\210\77\0\0\0\0\0\0\360\77" 0))
+(background
+    (color "R'G'B'A double" 32 "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\360\77" 0))
+(brush "Acrylic 01")
+(dynamics "Pressure Size")
+(palette "Standard")
+(brush-size 180)
+(brush-spacing 0.25)
+
+# end of gimp-dodge-burn-tool options

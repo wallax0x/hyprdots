@@ -1,0 +1,6 @@
+[General]
+ColorScheme=BreezeDark
+TerminalApplication=kitty
+
+[Icons]
+Theme=breeze-dark

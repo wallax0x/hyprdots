@@ -1,0 +1,12 @@
+2026-01-04 20:18:41.568 [info] GitLens v17.8.1 activating in VSCodium (1.106.3) on the desktop; mode=production, language='en', logLevel='warn', defaultDateLocale='null' (vscodium|someValue.machineId|someValue.sessionId)
+To enable debug logging, set `"gitlens.outputLevel": "debug"` or run "GitLens: Enable Debug Logging" from the Command Palette
+[2026-01-04 23:18:41.336] Warning(/usr/bin/git -c core.quotepath=false -c color.ui=false rev-parse --show-toplevel): fatal: not a git repository (or any of the parent directories): .git
+
+[2026-01-04 23:18:41.337] [GIT          ] [/home/mag0/.config/hypr/scripts] git rev-parse --show-toplevel • not a git repository (or any of the parent directories): .git [59ms]
+[2026-01-04 23:18:41.338] Warning(/usr/bin/git -c core.quotepath=false -c color.ui=false rev-parse --show-toplevel): fatal: not a git repository (or any of the parent directories): .git
+
+[2026-01-04 23:18:41.338] [GIT          ] [/home/mag0/Downloads] git rev-parse --show-toplevel • not a git repository (or any of the parent directories): .git [61ms]
+[2026-01-04 23:18:41.338] Warning(/usr/bin/git -c core.quotepath=false -c color.ui=false rev-parse --show-toplevel): fatal: not a git repository (or any of the parent directories): .git
+
+[2026-01-04 23:18:41.338] [GIT          ] [/home/mag0/Downloads] git rev-parse --show-toplevel • not a git repository (or any of the parent directories): .git [70ms]
+

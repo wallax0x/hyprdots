@@ -1,0 +1,140 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="h3">Dashboard</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ total_produtos | default('0') }}</h3>
+                    <p>Total de Produtos</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <a href="{{ url_for('listarProdutos') }}" class="small-box-footer">
+                    Ver produtos <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+                <div class="inner">
+                     <h3>{{ total_categorias | default('0') }}</h3>
+                    <p>Total de Categorias</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <a href="{{ url_for('lista_categorias') }}" class="small-box-footer">
+                    Ver categorias <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ total_usuarios | default('0') }}</h3>
+                    <p>Usuários Registrados</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    Ver usuários <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Produtos por Categoria</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Bem-vindo ao Painel!</h3>
+                </div>
+                <div class="card-body">
+                    <p>Aqui você pode gerenciar os produtos e categorias do seu sistema. Utilize o gráfico ao lado para visualizar o balanço do estoque.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Pegando os dados vindos do Flask (Jinja2)
+        // O filtro |tojson converte a lista Python para Array JS
+        var labels = {{ labels_grafico | default(['Cat A', 'Cat B']) | tojson }};
+        var dataValues = {{ data_grafico | default([10, 20]) | tojson }};
+
+        var areaChartData = {
+            labels  : labels,
+            datasets: [
+                {
+                    label               : 'Quantidade de Produtos',
+                    backgroundColor     : 'rgba(60,141,188,0.9)',
+                    borderColor         : 'rgba(60,141,188,0.8)',
+                    pointRadius          : false,
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data                : dataValues
+                }
+            ]
+        }
+
+        // Configuração do Bar Chart
+        var barChartCanvas = $('#barChart').get(0).getContext('2d')
+        var barChartData = $.extend(true, {}, areaChartData)
+        
+        var barChartOptions = {
+            responsive              : true,
+            maintainAspectRatio     : false,
+            datasetFill             : false
+        }
+
+        new Chart(barChartCanvas, {
+            type: 'bar',
+            data: barChartData,
+            options: barChartOptions
+        })
+    });
+</script>
+{% endblock %}

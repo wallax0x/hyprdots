@@ -1,0 +1,75 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1 class="h3">Dashboard</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ total_produtos | default('0') }}</h3>
+                    <p>Total de Produtos</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <a href="{{ url_for('listarProdutos') }}" class="small-box-footer">
+                    Ver produtos <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+                <div class="inner">
+                     <h3>{{ total_categorias | default('0') }}</h3>
+                    <p>Total de Categorias</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <a href="{{ url_for('listarCategoria') }}" class="small-box-footer">
+                    Ver categorias <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ total_usuarios | default('0') }}</h3>
+                    <p>Usuários Registrados</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    Ver usuários <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Bem-vindo ao Painel!</h3>
+                </div>
+                <div class="card-body">
+                    <p>Aqui você pode gerenciar os produtos e categorias do seu sistema.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

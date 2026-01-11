@@ -1,0 +1,40 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %} Editar Usuário {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3">Editar Usuário: {{ usuario['nome'] }}</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                
+                <div class="mb-3">
+                    <label>Nome:</label>
+                    <input type="text" name="nome" class="form-control" value="{{ usuario['nome'] }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Senha:</label>
+                    <input type="password" name="senha" class="form-control" placeholder="Deixe em branco para não alterar">
+                    <small class="form-text text-muted">Preencha este campo apenas se desejar alterar a senha.</small>
+                </div>
+                
+                <div class="mb-3">
+                    <label>Status:</label>
+                    <select name="ativo" class="form-select">
+                        <option value="True" {% if usuario['ativo'] == 'True' %}selected{% endif %}>Ativo</option>
+                        <option value="False" {% if usuario['ativo'] == 'False' %}selected{% endif %}>Inativo</option>
+                    </select>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    <a href="{{ url_for('listarUsuario') }}" class="btn btn-secondary">Cancelar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

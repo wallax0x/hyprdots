@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Painel Admin | Garanhuns Services</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Navbar estilo "Dark Mode" para diferenciar do site normal */
+        .navbar-admin {
+            background: linear-gradient(90deg, #1f2937, #111827);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card {
+            border: none;
+            border-radius: 12px;
+            background: white;
+            transition: transform 0.2s;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2.5rem;
+            opacity: 0.1;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .table thead {
+            background-color: #f9fafb;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+        }
+
+        .avatar-mini {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e5e7eb;
+        }
+
+        .badge-role {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR ADMIN -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-admin py-3 sticky-top">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/admin">
+            <i class="bi bi-shield-lock-fill text-warning"></i> 
+            ADMINISTRAÇÃO
+        </a>
+        
+        <div class="d-flex align-items-center gap-3">
+            <span class="text-white-50 small d-none d-md-block">Logado como Admin Master</span>
+            <div class="vr bg-secondary mx-2"></div>
+            <a href="/" class="btn btn-outline-light btn-sm rounded-pill px-3">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Ver Site
+            </a>
+            <a href="/logout" class="btn btn-danger btn-sm rounded-pill px-3">
+                Sair
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- FEEDBACK DE AÇÕES -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show shadow-sm" role="alert">
+                    <strong>Sistema:</strong> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h4 class="fw-bold mb-4 text-dark">Dashboard Geral</h4>
+
+    <!-- CARTÕES DE ESTATÍSTICAS -->
+    <div class="row g-4 mb-5">
+        <!-- Total Usuários -->
+        <div class="col-md-4">
+            <div class="stat-card p-4 shadow-sm border-start border-5 border-primary">
+                <i class="bi bi-people-fill stat-icon text-primary"></i>
+                <h6 class="text-muted text-uppercase fw-bold mb-1">Total de Usuários</h6>
+                <h2 class="display-6 fw-bold mb-0 text-dark">{{ stats.total }}</h2>
+                <small class="text-muted">Cadastros ativos no sistema</small>
+            </div>
+        </div>
+
+        <!-- Profissionais -->
+        <div class="col-md-4">
+            <div class="stat-card p-4 shadow-sm border-start border-5 border-success">
+                <i class="bi bi-briefcase-fill stat-icon text-success"></i>
+                <h6 class="text-muted text-uppercase fw-bold mb-1">Profissionais</h6>
+                <h2 class="display-6 fw-bold mb-0 text-success">{{ stats.profs }}</h2>
+                <small class="text-success fw-bold"><i class="bi bi-graph-up-arrow"></i> Oferecendo serviços</small>
+            </div>
+        </div>
+
+        <!-- Clientes -->
+        <div class="col-md-4">
+            <div class="stat-card p-4 shadow-sm border-start border-5 border-info">
+                <i class="bi bi-cart-fill stat-icon text-info"></i>
+                <h6 class="text-muted text-uppercase fw-bold mb-1">Clientes</h6>
+                <h2 class="display-6 fw-bold mb-0 text-info">{{ stats.clientes }}</h2>
+                <small class="text-muted">Procurando serviços</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABELA DE GERENCIAMENTO -->
+    <div class="d-flex justify-content-between align-items-end mb-3">
+        <h5 class="fw-bold m-0"><i class="bi bi-table me-2"></i>Gerenciar Usuários</h5>
+        <span class="badge bg-dark">{{ usuarios|length }} registros encontrados</span>
+    </div>
+
+    <div class="table-container shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th class="ps-4 py-3">Usuário</th>
+                        <th class="py-3">Contato (Email / Zap)</th>
+                        <th class="py-3">Perfil</th>
+                        <th class="py-3">Detalhes</th>
+                        <th class="pe-4 py-3 text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in usuarios %}
+                    <tr>
+                        <td class="ps-4">
+                            <div class="d-flex align-items-center">
+                                {% if user.foto_perfil != 'default.png' %}
+                                    <img src="{{ url_for('static', filename='uploads/'+user.foto_perfil) }}" class="avatar-mini me-2 shadow-sm">
+                                {% else %}
+                                    <div class="avatar-mini bg-light d-flex align-items-center justify-content-center me-2 text-secondary">
+                                        <i class="bi bi-person-fill"></i>
+                                    </div>
+                                {% endif %}
+                                <div>
+                                    <div class="fw-bold text-dark">{{ user.nome }}</div>
+                                    <div class="small text-muted">ID: #{{ user.id }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex flex-column">
+                                <span class="fw-semibold text-dark" style="font-size: 0.9rem;">{{ user.email }}</span>
+                                {% if user.whatsapp %}
+                                    <span class="text-success small"><i class="bi bi-whatsapp"></i> {{ user.whatsapp }}</span>
+                                {% else %}
+                                    <span class="text-muted small">-</span>
+                                {% endif %}
+                            </div>
+                        </td>
+                        <td>
+                            {% if user.tipo == 'profissional' %}
+                                <span class="badge bg-success badge-role bg-opacity-10 text-success border border-success">
+                                    PROFISSIONAL
+                                </span>
+                            {% else %}
+                                <span class="badge bg-secondary badge-role bg-opacity-10 text-secondary border border-secondary">
+                                    CLIENTE
+                                </span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if user.tipo == 'profissional' %}
+                                <div class="small text-dark fw-bold">{{ user.profissao }}</div>
+                                <div class="small text-muted"><i class="bi bi-geo-alt"></i> {{ user.bairro }}</div>
+                            {% else %}
+                                <span class="text-muted small fst-italic">N/A</span>
+                            {% endif %}
+                        </td>
+                        <td class="pe-4 text-end">
+                            <a href="/admin/excluir/{{ user.id }}" 
+                               class="btn btn-outline-danger btn-sm rounded-pill px-3"
+                               onclick="return confirm('ATENÇÃO: Você está prestes a excluir {{ user.nome }} permanentemente. Continuar?');">
+                                <i class="bi bi-trash3-fill me-1"></i> Banir
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center py-5">
+                            <div class="text-muted opacity-50 mb-2">
+                                <i class="bi bi-inbox fs-1"></i>
+                            </div>
+                            <p class="text-muted fw-bold">Nenhum usuário cadastrado ainda.</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+{{ define "candidatos_vaga.html" }}
+    {{ template "header" . }}
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-800">Candidatos para: {{ .vaga.Titulo }}</h1>
+                <p class="text-slate-500">{{ len .candidaturas }} interessados encontrados</p>
+            </div>
+            <a href="/dashboard" class="text-slate-500 hover:text-slate-800 flex items-center gap-1 font-medium">
+                ← Voltar
+            </a>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {{ range .candidaturas }}
+            <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-xl">
+                        {{ slice .Candidato.Nome 0 1 }}
+                    </div>
+                    <span class="text-xs text-slate-400 font-mono">
+                        {{ .CreatedAt.Format "02/01" }}
+                    </span>
+                </div>
+
+                <h3 class="font-bold text-lg text-slate-800 mb-1">{{ .Candidato.Nome }}</h3>
+                <p class="text-sm text-slate-500 mb-4">{{ .Candidato.Email }}</p>
+
+                <div class="mb-6">
+                    <p class="text-xs font-bold text-slate-400 uppercase mb-2">Habilidades:</p>
+                    <p class="text-sm text-slate-700 bg-slate-50 p-3 rounded-lg border border-slate-100 italic">
+                        "{{ .Candidato.Skills }}"
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-2">
+        <div class="flex gap-2">
+            {{ if .Candidato.Telefone }}
+            <a href="https://wa.me/55{{ .Candidato.Telefone }}" target="_blank" class="flex-1 bg-green-500 text-white py-2 rounded-lg font-bold text-center text-sm">
+                📱 Zap
+            </a>
+            {{ end }}
+            
+            <a href="mailto:{{ .Candidato.Email }}" class="flex-1 bg-slate-100 text-slate-700 py-2 rounded-lg font-bold text-center text-sm">
+                ✉️ Email
+            </a>
+        </div>
+
+        {{ if .Candidato.ArquivoCurriculo }}
+        <a href="/{{ .Candidato.ArquivoCurriculo }}" target="_blank" class="w-full bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 py-2 rounded-lg font-bold text-center text-sm transition flex items-center justify-center gap-2">
+            📄 Baixar Currículo PDF
+        </a>
+        {{ else }}
+        <span class="text-xs text-center text-slate-400 py-2">Sem PDF anexado</span>
+        {{ end }}
+    </div>
+            </div>
+            {{ else }}
+            <div class="col-span-3 text-center py-12">
+                <div class="text-4xl mb-4">🦗</div>
+                <h3 class="text-lg font-medium text-slate-600">Nenhum candidato aplicou ainda.</h3>
+                <p class="text-slate-400">Divulgue sua vaga para atrair talentos!</p>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+
+    {{ template "footer" . }}
+{{ end }}

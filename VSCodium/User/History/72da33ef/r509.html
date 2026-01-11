@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat com Desconhecidos</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  
+  <div id="lobby-container">
+    <h2>Como você quer conversar?</h2>
+    <button id="findTextChat">Só Mensagem</button>
+    <button id="findVideoChat">Mensagem e Vídeo</button>
+    <div id="lobby-status"></div>
+  </div>
+
+  <div id="call-container">
+    <div id="video-container">
+      <h3>Seu Vídeo</h3>
+      <video id="localVideo" autoplay playsinline muted></video>
+      <h3>Vídeo do Parceiro</h3>
+      <video id="remoteVideo" autoplay playsinline></video>
+    </div>
+    <div id="chat-container">
+      <div id="status">Conectado</div>
+      <ul id="messages"></ul>
+      <form id="form" action="">
+        <input id="input" autocomplete="off" placeholder="Digite sua mensagem..." />
+        <button>Enviar</button>
+      </form>
+    </div>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js"></script> 
+</body>
+</html>

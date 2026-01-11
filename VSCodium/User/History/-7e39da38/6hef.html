@@ -1,0 +1,58 @@
+{{ define "form_vaga.html" }}
+{{ template "base" . }}
+{{ end }}
+
+{{ define "content" }}
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+    <h2 class="text-2xl font-bold text-slate-800 mb-6">Nova Vaga em Garanhuns</h2>
+
+    <form action="/vagas" method="POST" class="space-y-5">
+        
+        <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Título da Vaga</label>
+            <input type="text" name="titulo" required placeholder="Ex: Atendente de Farmácia" 
+                class="w-full rounded-lg border-slate-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-3 border">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Empresa</label>
+                <input type="text" name="empresa" required placeholder="Ex: Farmácia do Trabalhador" 
+                    class="w-full rounded-lg border-slate-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-3 border">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Salário</label>
+                <input type="text" name="salario" placeholder="Ex: R$ 1.412,00" 
+                    class="w-full rounded-lg border-slate-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-3 border">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Localização</label>
+                <input type="text" name="localizacao" value="Garanhuns, PE" 
+                    class="w-full rounded-lg border-slate-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-3 border">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Tipo de Contrato</label>
+                <select name="tipo" class="w-full rounded-lg border-slate-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-3 border">
+                    <option value="CLT">Carteira Assinada (CLT)</option>
+                    <option value="PJ">PJ / Prestador</option>
+                    <option value="Estágio">Estágio</option>
+                    <option value="Temporário">Temporário</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Descrição da Vaga</label>
+            <textarea name="descricao" rows="4" required placeholder="Descreva as atividades e requisitos..." 
+                class="w-full rounded-lg border-slate-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 p-3 border"></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-xl hover:bg-emerald-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+            Publicar Vaga 🚀
+        </button>
+    </form>
+</div>
+{{ end }}

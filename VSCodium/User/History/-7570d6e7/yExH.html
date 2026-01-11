@@ -1,0 +1,42 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %} Cadastrar Usuário {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3">Cadastrar Novo Usuário</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <!-- O formulário envia para a própria rota -->
+            <form method="POST">
+                
+                <div class="mb-3">
+                    <label>Nome:</label>
+                    <input type="text" name="nome" class="form-control" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label>Senha:</label>
+                    <input type="password" name="senha" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Status:</label>
+                    <select name="ativo" class="form-select">
+                        <!-- 'True' já vem selecionado como padrão -->
+                        <option value="True" selected>Ativo</option>
+                        <option value="False">Inativo</option>
+                    </select>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <!-- Link opcional para cancelar e voltar para a lista -->
+                    <a href="{{ url_for('listarUsuario') }}" class="btn btn-secondary">Cancelar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

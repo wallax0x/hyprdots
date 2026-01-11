@@ -1,0 +1,16 @@
+updateInfoAdded=true
+
+[dolphin_detailsmodesettings.upd]
+ctime=1758402782
+done=rename-leading-padding,rename-side-padding,move-content-display
+mtime=1764800663
+
+[dolphin_replace_view_mode_with_view_settings_in_toolbar.upd]
+ctime=1758754372
+done=replace-view-mode-with-view-settings-in-toolbar
+mtime=1764800663
+
+[dolphin_statusandlocationbarssettings.upd]
+ctime=1758402782
+done=move-content-display,25.04-convert-bool-showstatusbar-to-enum-showstatusbar,replace-view-mode-with-view-settings-in-toolbar
+mtime=1764800663

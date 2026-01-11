@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meu Chat</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #messages { list-style-type: none; margin: 0; padding: 0; border: 1px solid #ccc; height: 300px; overflow-y: scroll; }
+    #messages li { padding: 8px 12px; }
+    #messages li:nth-child(odd) { background: #f0f0f0; }
+    #form { display: flex; margin-top: 10px; }
+    #input { flex-grow: 1; border: 1px solid #ccc; padding: 10px; }
+    #form button { background: #007bff; color: white; border: none; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Chat Global</h1>
+
+  <ul id="messages"></ul>
+
+  <form id="form" action="">
+    <input id="input" autocomplete="off" /><button>Enviar</button>
+  </form>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    // 3. Pega os elementos do HTML
+    const messages = document.getElementById('messages');
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+
+    // 4. Lógica de ENVIO de mensagem
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // Impede o recarregamento da página
+      if (input.value) {
+        // Envia o valor do input para o servidor pelo evento 'nova_mensagem'
+        socket.emit('nova_mensagem', input.value);
+        input.value = ''; // Limpa o campo de texto
+      }
+    });
+
+    // 5. Lógica de RECEBIMENTO de mensagem
+    // Ouve o evento 'mensagem_recebida' que o servidor vai mandar
+    socket.on('mensagem_recebida', (msg) => {
+      const item = document.createElement('li');
+      item.textContent = msg;
+      messages.appendChild(item);
+      // Rola para o final da lista
+      messages.scrollTop = messages.scrollHeight; 
+    });
+
+    // (O evento 'bem_vindo' da Fase 1 ainda funciona, mas não vamos usá-lo agora)
+  </script>
+</body>
+</html>

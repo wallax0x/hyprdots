@@ -1,0 +1,14 @@
+2026-01-02 20:28:16.947 [info] Started local extension host with pid 307704.
+2026-01-02 20:28:17.875 [error] [xabikos.JavaScriptSnippets]: Unknown language in `contributes.JavaScriptSnippets.language`. Provided value: vue
+2026-01-02 20:28:18.057 [error] Cannot read properties of undefined (reading 'extensionId'): TypeError: Cannot read properties of undefined (reading 'extensionId')
+    at t (vscode-file://vscode-app/opt/vscodium/resources/app/out/vs/workbench/workbench.desktop.main.js:4125:2745)
+    at _Dt.recommendRemoteExtensionIfNeeded (vscode-file://vscode-app/opt/vscodium/resources/app/out/vs/workbench/workbench.desktop.main.js:4125:3497)
+2026-01-02 20:28:19.704 [info] [perf] Render performance baseline is 19ms
+2026-01-02 20:28:39.097 [info] Started local extension host with pid 307806.
+2026-01-02 20:28:40.181 [error] [xabikos.JavaScriptSnippets]: Unknown language in `contributes.JavaScriptSnippets.language`. Provided value: vue
+2026-01-02 20:28:40.310 [error] Cannot read properties of undefined (reading 'extensionId'): TypeError: Cannot read properties of undefined (reading 'extensionId')
+    at t (vscode-file://vscode-app/opt/vscodium/resources/app/out/vs/workbench/workbench.desktop.main.js:4125:2745)
+    at _Dt.recommendRemoteExtensionIfNeeded (vscode-file://vscode-app/opt/vscodium/resources/app/out/vs/workbench/workbench.desktop.main.js:4125:3497)
+2026-01-02 20:28:41.823 [info] [perf] Render performance baseline is 16ms
+2026-01-02 20:29:57.447 [error] [Extension Host] (node:307806) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)

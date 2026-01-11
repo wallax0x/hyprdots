@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Garanhuns Services | Encontre Profissionais</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --dark: #212529;
+            --light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f6;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: rgba(13, 110, 253, 0.95) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 100px 0 120px;
+            margin-bottom: -60px;
+            position: relative;
+        }
+
+        /* BUSCA FLUTUANTE */
+        .search-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            padding: 30px;
+            margin-top: -80px; /* Sobe em cima do hero */
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ESTILO DAS CATEGORIAS (ICONES) */
+        .cat-card {
+            text-decoration: none;
+            color: #6c757d;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cat-card .icon-box {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 8px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .cat-card span { font-size: 0.85rem; font-weight: 600; }
+
+        .cat-card:hover .icon-box, 
+        .cat-card.active .icon-box {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(13, 110, 253, 0.2);
+            border-color: #0d6efd;
+            background-color: #fff;
+        }
+        .cat-card.active span { color: #0d6efd; }
+
+        /* CARDS DOS PROFISSIONAIS */
+        .card-prof {
+            border: none;
+            border-radius: 16px;
+            background: white;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            height: 100%;
+            position: relative;
+        }
+
+        .card-prof:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .prof-img-wrapper {
+            position: relative;
+        }
+
+        .badge-bairro {
+            background-color: #eef2f7;
+            color: #495057;
+            border: 1px solid #dee2e6;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 50px;
+        }
+
+        /* Animação de entrada */
+        .animate-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2" href="/">
+        <i class="bi bi-rocket-takeoff-fill"></i> Garanhuns Services
+    </a>
+    
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+            {% if current_user.is_authenticated %}
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+                        {% if current_user.foto_perfil and current_user.foto_perfil != 'default.png' %}
+                            <img src="{{ url_for('static', filename='uploads/' + current_user.foto_perfil) }}" class="rounded-circle border border-2 border-white me-2" width="35" height="35" style="object-fit: cover;">
+                        {% else %}
+                            <div class="rounded-circle bg-light text-primary d-flex align-items-center justify-content-center me-2 border border-white" style="width:35px; height:35px;">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                        {% endif %}
+                        <span class="fw-semibold">{{ current_user.nome.split()[0] }}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3 mt-2">
+                        {% if current_user.tipo == 'admin' %}
+                            <li><a class="dropdown-item py-2 fw-bold text-primary" href="/admin"><i class="bi bi-speedometer2 me-2"></i> Painel Admin</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                        {% endif %}
+                        <li><a class="dropdown-item py-2" href="/perfil"><i class="bi bi-person-gear me-2"></i> Meu Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item py-2 text-danger" href="/logout"><i class="bi bi-box-arrow-right me-2"></i> Sair</a></li>
+                    </ul>
+                </div>
+            {% else %}
+                <a href="/login" class="btn btn-link text-white text-decoration-none fw-semibold">Entrar</a>
+                <a href="/cadastro" class="btn btn-light text-primary fw-bold rounded-pill px-4 shadow-sm">Criar Conta</a>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container position-fixed top-0 start-50 translate-middle-x mt-5" style="z-index: 1050; pointer-events: none;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show shadow-lg rounded-pill px-4" role="alert" style="pointer-events: auto;">
+            <i class="bi bi-info-circle-fill me-2"></i> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+</div>
+
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold mb-3 animate-up" style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+            Profissionais de Confiança
+        </h1>
+        <p class="lead mb-5 fs-4 opacity-75 animate-up" style="animation-delay: 0.1s;">
+            Encontre quem você precisa em Garanhuns, rápido e fácil.
+        </p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="search-card animate-up" style="animation-delay: 0.2s;">
+                <form action="/" method="GET">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-5">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search"></i></span>
+                                <input type="text" name="q" class="form-control border-start-0 ps-0" placeholder="Ex: Eletricista, Pedreiro..." value="{{ termo_atual }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-geo-alt"></i></span>
+                                <select name="bairro" class="form-select border-start-0 ps-0 text-muted" style="cursor: pointer;">
+                                    <option value="Todos">Todos os Bairros</option>
+                                    {% for b in bairros %}
+                                        <option value="{{ b }}" {% if request.args.get('bairro') == b %}selected{% endif %}>{{ b }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold shadow-sm">
+                                Buscar Agora
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center flex-wrap gap-3 animate-up" style="animation-delay: 0.3s;">
+        
+        <a href="/" class="cat-card {% if not categoria_atual %}active{% endif %}">
+            <div class="icon-box"><i class="bi bi-grid-fill"></i></div>
+            <span>Todos</span>
+        </a>
+
+        <a href="/?categoria=Eletricista" class="cat-card {% if categoria_atual == 'Eletricista' %}active{% endif %}">
+            <div class="icon-box"><i class="bi bi-lightning-charge-fill text-warning"></i></div>
+            <span>Eletricista</span>
+        </a>
+
+        <a href="/?categoria=Pedreiro" class="cat-card {% if categoria_atual == 'Pedreiro' %}active{% endif %}">
+            <div class="icon-box"><i class="bi bi-bricks text-danger"></i></div>
+            <span>Pedreiro</span>
+        </a>
+
+        <a href="/?categoria=Pintor" class="cat-card {% if categoria_atual == 'Pintor' %}active{% endif %}">
+            <div class="icon-box"><i class="bi bi-paint-bucket text-primary"></i></div>
+            <span>Pintor</span>
+        </a>
+
+        <a href="/?categoria=Encanador" class="cat-card {% if categoria_atual == 'Encanador' %}active{% endif %}">
+            <div class="icon-box"><i class="bi bi-droplet-fill text-info"></i></div>
+            <span>Encanador</span>
+        </a>
+
+        <a href="/?categoria=Tecnologia" class="cat-card {% if categoria_atual == 'Tecnologia' %}active{% endif %}">
+            <div class="icon-box"><i class="bi bi-laptop-fill text-dark"></i></div>
+            <span>Técnico TI</span>
+        </a>
+
+        <a href="/?categoria=Limpeza" class="cat-card {% if categoria_atual == 'Limpeza' %}active{% endif %}">
+            <div class="icon-box"><i class="bi bi-stars text-success"></i></div>
+            <span>Limpeza</span>
+        </a>
+
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row g-4">
+        {% if termo_atual %}
+            <h5 class="text-muted mb-3 ps-2">Resultados para: <span class="text-dark fw-bold">"{{ termo_atual }}"</span></h5>
+        {% endif %}
+
+        {% for prof in profissionais %}
+        <div class="col-md-6 col-lg-4 col-xl-3 animate-up" style="animation-delay: 0.{{ loop.index }}s;">
+            <div class="card card-prof h-100 shadow-sm border-0">
+                
+                <div class="prof-img-wrapper position-relative">
+                    <div style="height: 60px; background: linear-gradient(45deg, #0d6efd, #0dcaf0); border-radius: 5px 5px 0 0;"></div>
+                    
+                    <div class="position-absolute top-100 start-50 translate-middle">
+                        {% if prof.foto_perfil and prof.foto_perfil != 'default.png' %}
+                            <img src="{{ url_for('static', filename='uploads/' + prof.foto_perfil) }}" 
+                                 class="rounded-circle border border-4 border-white shadow-sm"
+                                 style="width: 100px; height: 100px; object-fit: cover;">
+                        {% else %}
+                            <div class="rounded-circle border border-4 border-white shadow-sm d-flex align-items-center justify-content-center bg-white text-secondary"
+                                 style="width: 100px; height: 100px; font-size: 2.5rem;">
+                                <i class="bi bi-person"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card-body pt-5 px-4 pb-4 d-flex flex-column text-center mt-3">
+                    <h5 class="card-title fw-bold text-dark mb-1">{{ prof.nome }}</h5>
+                    <p class="text-primary fw-bold mb-2 small text-uppercase">{{ prof.profissao }}</p>
+                    
+                    <span class="badge badge-bairro align-self-center mb-3">
+                        <i class="bi bi-geo-alt-fill text-danger me-1"></i> {{ prof.bairro }}
+                    </span>
+
+                    <p class="card-text text-muted small flex-grow-1" style="line-height: 1.5;">
+                        {% if prof.descricao %}
+                            {{ prof.descricao[:90] }}{% if prof.descricao|length > 90 %}...{% endif %}
+                        {% else %}
+                            Profissional disponível para serviços em Garanhuns.
+                        {% endif %}
+                    </p>
+                    
+                    <div class="d-grid gap-2 mt-3">
+                        <a href="{{ url_for('detalhes_profissional', id=prof.id) }}" 
+                           class="btn btn-outline-primary btn-sm rounded-pill fw-bold">
+                           <i class="bi bi-eye"></i> Ver Detalhes
+                        </a>
+
+                        {% if prof.whatsapp %}
+                        <a href="https://wa.me/55{{ prof.whatsapp }}?text=Olá, vi seu perfil no site." 
+                           target="_blank" 
+                           class="btn btn-success btn-sm rounded-pill fw-bold d-flex align-items-center justify-content-center gap-2">
+                            <i class="bi bi-whatsapp"></i> Chamar no Zap
+                        </a>
+                        {% else %}
+                        <button disabled class="btn btn-secondary btn-sm rounded-pill">Sem WhatsApp</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12 text-center py-5 animate-up">
+            <div class="opacity-50 mb-3">
+                <i class="bi bi-search display-1 text-secondary"></i>
+            </div>
+            <h3 class="fw-bold text-dark">Nenhum profissional encontrado.</h3>
+            <p class="text-muted">Tente mudar o termo da busca, a categoria ou o bairro.</p>
+            <a href="/" class="btn btn-outline-primary rounded-pill px-4 mt-2">Limpar Filtros</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer class="bg-white py-4 mt-auto border-top">
+    <div class="container text-center">
+        <p class="mb-0 text-muted small">
+            &copy; 2025 <strong>Garanhuns Services</strong>. Feito com <i class="bi bi-heart-fill text-danger"></i> para o projeto escolar.
+        </p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

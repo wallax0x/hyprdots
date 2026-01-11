@@ -1,0 +1,340 @@
+/* --- 1. Configuração Global e Fontes --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+header {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-weight: 500;
+  display: flex; /* (NOVO) Para alinhar logo e texto dentro do H1 */
+  align-items: center; /* (NOVO) */
+  gap: 10px; /* (NOVO) Espaçamento entre logo e texto */
+}
+
+.header-logo {
+  height: 32px; /* Ajuste o tamanho conforme preferir */
+  width: auto;
+  vertical-align: middle; /* Alinha a imagem com o texto */
+}
+
+/* --- 2. Animações --- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- 3. Estilo do Lobby --- */
+#lobby-container {
+  text-align: center;
+  background: #242424;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.5s ease-out;
+}
+
+#lobby-container h2 {
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+#lobby-container button {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 24px;
+  margin: 0 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+#findTextChat {
+  background-color: #007bff;
+  color: white;
+}
+
+#findVideoChat {
+  background-color: #28a745;
+  color: white;
+}
+
+#lobby-container button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#lobby-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- 4. Loader (Animação) --- */
+#lobby-status-container {
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#loader {
+  border: 4px solid #444;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+#loader.hidden {
+  display: none;
+}
+
+#lobby-status {
+  font-style: italic;
+  color: #aaa;
+}
+
+/* --- 5. Container Principal da Chamada --- */
+#call-container {
+  display: none; /* Começa escondido */
+  flex-direction: row;
+  flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+  gap: 20px;
+  width: 100%;
+  max-width: 1300px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* --- 6. Container de Vídeo --- */
+#video-container {
+  flex: 3; /* Ocupa 3/4 do espaço */
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.video-wrapper {
+  position: relative; /* Para os controles flutuarem */
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.video-wrapper h3 {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+video {
+  width: 100%;
+  display: block;
+  min-height: 250px;
+}
+
+.video-controls {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(5px);
+  padding: 8px 10px;
+  border-radius: 20px;
+  display: flex;
+  gap: 10px;
+  opacity: 0; /* Escondido por padrão */
+  transition: opacity 0.3s ease;
+}
+
+.video-wrapper:hover .video-controls {
+  opacity: 1; /* Aparece no hover */
+}
+
+.video-controls button {
+  background: #555;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.video-controls button:hover {
+  background: #666;
+}
+
+/* (NOVO) Classe para botões "desligados" */
+.video-controls button.disabled {
+  background: #e74c3c; /* Vermelho */
+}
+
+/* --- 7. Container de Chat --- */
+#chat-container {
+  flex: 1; /* Ocupa 1/4 do espaço */
+  min-width: 300px;
+  background: #242424;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  height: 70vh; /* Altura fixa para o chat */
+  min-height: 550px;
+}
+
+#status {
+  padding: 12px;
+  text-align: center;
+  font-style: italic;
+  font-weight: 500;
+  background: #333;
+  border-radius: 12px 12px 0 0;
+}
+
+/* --- 8. Mensagens do Chat --- */
+#messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* (NOVO) Estilo da barra de scroll */
+#messages::-webkit-scrollbar {
+  width: 6px;
+}
+#messages::-webkit-scrollbar-track {
+  background: #242424;
+}
+#messages::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 6px;
+}
+
+#messages li {
+  list-style: none;
+  padding: 10px 15px;
+  border-radius: 18px;
+  margin-bottom: 10px;
+  max-width: 85%;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease-out;
+}
+
+#messages li.me {
+  background: #007bff;
+  color: white;
+  align-self: flex-end; /* Alinha à direita */
+  border-bottom-right-radius: 4px;
+}
+
+#messages li.partner {
+  background: #3a3a3a;
+  color: #e0e0e0;
+  align-self: flex-start; /* Alinha à esquerda */
+  border-bottom-left-radius: 4px;
+}
+
+/* (NOVO) Mensagens do sistema (Ex: "Parceiro desconectou") */
+#messages li.system {
+  background: none;
+  color: #aaa;
+  font-style: italic;
+  font-size: 13px;
+  text-align: center;
+  align-self: center;
+  max-width: 100%;
+}
+
+/* --- 9. Formulário de Envio --- */
+#form {
+  display: flex;
+  border-top: 1px solid #333;
+  padding: 10px;
+  gap: 8px;
+}
+
+#input {
+  flex-grow: 1;
+  border: none;
+  background: #3a3a3a;
+  color: #e0e0e0;
+  padding: 10px 15px;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+#form button {
+  border: none;
+  border-radius: 20px;
+  padding: 0 15px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+#sendButton {
+  background: #007bff;
+  color: white;
+}
+#sendButton:hover {
+  background: #0056b3;
+}
+
+#skipButton {
+  background: #ffc107;
+  color: #333;
+}
+#skipButton:hover {
+  background: #e0a800;
+}

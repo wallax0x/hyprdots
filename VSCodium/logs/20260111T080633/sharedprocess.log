@@ -1,0 +1,12 @@
+2026-01-11 08:06:40.446 [info] Getting Manifest... ms-python.python
+2026-01-11 08:06:40.447 [info] Getting Manifest... rangav.vscode-thunder-client
+2026-01-11 08:06:41.346 [info] Installing extension: ms-python.python {"productVersion":{"version":"1.106.37943","date":"2025-11-27T00:03:42.214Z"},"pinned":false,"operation":3,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/home/mag0/.vscode-oss/extensions/extensions.json","path":"/home/mag0/.vscode-oss/extensions/extensions.json","scheme":"vscode-userdata"}}
+2026-01-11 08:06:41.387 [info] Installing extension: rangav.vscode-thunder-client {"productVersion":{"version":"1.106.37943","date":"2025-11-27T00:03:42.214Z"},"pinned":false,"operation":3,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/home/mag0/.vscode-oss/extensions/extensions.json","path":"/home/mag0/.vscode-oss/extensions/extensions.json","scheme":"vscode-userdata"}}
+2026-01-11 08:06:49.108 [info] Extracted extension to file:///home/mag0/.vscode-oss/extensions/ms-python.python-2026.0.0-universal: ms-python.python
+2026-01-11 08:06:49.181 [info] Renamed to /home/mag0/.vscode-oss/extensions/ms-python.python-2026.0.0-universal
+2026-01-11 08:06:49.224 [info] Marked extension as removed ms-python.python-2025.20.1-universal
+2026-01-11 08:06:49.228 [info] Extension installed successfully: ms-python.python vscode-userdata:/home/mag0/.vscode-oss/extensions/extensions.json
+2026-01-11 08:06:49.678 [info] Extracted extension to file:///home/mag0/.vscode-oss/extensions/rangav.vscode-thunder-client-2.38.6-universal: rangav.vscode-thunder-client
+2026-01-11 08:06:49.684 [info] Renamed to /home/mag0/.vscode-oss/extensions/rangav.vscode-thunder-client-2.38.6-universal
+2026-01-11 08:06:49.695 [info] Marked extension as removed rangav.vscode-thunder-client-2.38.5-universal
+2026-01-11 08:06:49.710 [info] Extension installed successfully: rangav.vscode-thunder-client vscode-userdata:/home/mag0/.vscode-oss/extensions/extensions.json

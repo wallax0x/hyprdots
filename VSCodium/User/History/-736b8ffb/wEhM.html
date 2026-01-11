@@ -1,0 +1,54 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %} Listar Usuários {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="h3">Usuários Cadastrados</h1>
+        </div>
+        <div class="col text-end">
+            <a href="{{url_for('cadastrarUsuario')}}" class="btn btn-primary">
+                <i class="fas fa-plus-circle"></i> Novo Usuário
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body p-0">
+
+            <table class="table table-striped m-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Ativo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for u in usuarios %}
+                    <tr>
+                        <td>{{ u['id'] }}</td>
+                        <td>{{ u['nome']}}</td>
+                        
+                        <td>{{ u['ativo'] }}</td>
+
+                        <td>
+                            <a href="{{url_for('editarUsuario', id=u['id'])}}"
+                                class="btn btn-sm btn-warning">Editar</a>
+
+                            <form action="{{url_for('excluirUsuario', id=u['id'])}}" method="POST"
+                                style="display:inline;" onsubmit="return confirm('Deseja realmente excluir este usuário?')">
+                                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

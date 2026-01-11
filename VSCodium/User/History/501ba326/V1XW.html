@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | Custom Admin</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+  />
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <!-- Bootstrap -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+  />
+  <!-- AdminLTE -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css"
+  />
+</head>
+<body class="login-page" style="min-height: 100vh;">
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="#"><b>Custom</b>Login</a>
+    </div>
+
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Entre para iniciar sua sessão</p>
+
+        <form method="post">
+          <div class="input-group mb-3">
+            <input
+              type="email" class="form-control" placeholder="Senha" name="senha">
+              class="form-control"
+              placeholder="Email"
+              required
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input
+              type="password" class="form-control" placeholder="Senha" name="senha">
+              class="form-control"
+              placeholder="Senha"
+              required
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" id="remember" />
+                <label for="remember"> Lembrar-me </label>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block">
+                Entrar
+              </button>
+            </div>
+          </div>
+        </form>
+
+
+        
+        <p class="mb-0">
+          <a href="#" class="text-center">Criar nova conta</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+2026-01-04 20:18:41.403 [info] [2026-01-04 23:18:41.337] [         59ms] [/home/mag0/.config/hypr/scripts] git rev-parse --show-toplevel • FAILED
+2026-01-04 20:18:41.403 [info] 
+Error: fatal: not a git repository (or any of the parent directories): .git
+
+2026-01-04 20:18:41.403 [info] [2026-01-04 23:18:41.338] [         61ms] [/home/mag0/Downloads] git rev-parse --show-toplevel • FAILED
+2026-01-04 20:18:41.403 [info] 
+Error: fatal: not a git repository (or any of the parent directories): .git
+
+2026-01-04 20:18:41.403 [info] [2026-01-04 23:18:41.338] [         70ms] [/home/mag0/Downloads] git rev-parse --show-toplevel • FAILED
+2026-01-04 20:18:41.403 [info] 
+Error: fatal: not a git repository (or any of the parent directories): .git
+

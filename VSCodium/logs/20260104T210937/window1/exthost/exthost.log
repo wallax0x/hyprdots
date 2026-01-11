@@ -1,0 +1,71 @@
+2026-01-04 21:09:39.402 [info] Extension host with pid 18546 started
+2026-01-04 21:09:39.566 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-01-04 21:09:39.588 [info] ExtensionService#_doActivateExtension mechatroner.rainbow-csv, startup: false, activationEvent: 'onLanguage:plaintext'
+2026-01-04 21:09:39.591 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-01-04 21:09:40.532 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2026-01-04 21:09:40.541 [info] ExtensionService#_doActivateExtension christian-kohler.path-intellisense, startup: true, activationEvent: '*'
+2026-01-04 21:09:40.563 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-01-04 21:09:40.574 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-01-04 21:09:40.585 [info] ExtensionService#_doActivateExtension oderwat.indent-rainbow, startup: true, activationEvent: '*'
+2026-01-04 21:09:40.586 [info] ExtensionService#_doActivateExtension tombonnike.vscode-status-bar-format-toggle, startup: true, activationEvent: '*'
+2026-01-04 21:09:40.630 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2026-01-04 21:09:40.666 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-01-04 21:09:40.728 [info] Eager extensions activated
+2026-01-04 21:09:40.736 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.738 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.753 [info] ExtensionService#_doActivateExtension aaron-bond.better-comments, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.756 [info] ExtensionService#_doActivateExtension alefragnani.Bookmarks, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.765 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.766 [info] ExtensionService#_doActivateExtension bierner.emojisense, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.771 [info] ExtensionService#_doActivateExtension dbaeumer.vscode-eslint, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.799 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.922 [info] ExtensionService#_doActivateExtension Gruntfuggly.todo-tree, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.943 [info] ExtensionService#_doActivateExtension kisstkondoros.vscode-gutter-preview, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.975 [info] ExtensionService#_doActivateExtension naumovs.color-highlight, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.980 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.989 [info] ExtensionService#_doActivateExtension usernamehw.errorlens, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:40.995 [info] ExtensionService#_doActivateExtension yandeu.five-server, startup: false, activationEvent: 'onStartupFinished'
+2026-01-04 21:09:59.251 [warning] Illegal argument: TextEditor(vs.editor.ICodeEditor:1,$model1)
+2026-01-04 21:09:59.251 [warning] Illegal argument: TextEditor(vs.editor.ICodeEditor:1,$model1)
+2026-01-04 21:09:59.251 [warning] Illegal argument: TextEditor(vs.editor.ICodeEditor:1,$model1)
+2026-01-04 21:09:59.251 [warning] Illegal argument: TextEditor(vs.editor.ICodeEditor:1,$model1)
+2026-01-04 21:09:59.251 [warning] Illegal argument: TextEditor(vs.editor.ICodeEditor:1,$model1)
+2026-01-04 21:49:39.226 [info] Extension host terminating: renderer closed the MessagePort
+2026-01-04 21:49:39.239 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-01-04 21:49:39.241 [error] TypeError: Cannot read properties of undefined (reading 'dispose')
+	at Object.dispose (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:142:146232)
+	at bw.<anonymous> (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:110:26520)
+	at bw.dispose (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:110:26616)
+	at Object.dispose (/home/mag0/.vscode-oss/extensions/eamodio.gitlens-17.8.1-universal/dist/gitlens.js:72:28506)
+	at /home/mag0/.vscode-oss/extensions/eamodio.gitlens-17.8.1-universal/dist/gitlens.js:782:58420
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/mag0/.vscode-oss/extensions/eamodio.gitlens-17.8.1-universal/dist/gitlens.js:782:58401)
+	at Qi (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:746)
+	at j3._fn (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:18595)
+	at j3.dispose (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1261)
+	at xX._deactivate (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:14860)
+	at file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:12146
+	at Array.map (<anonymous>)
+	at xX._deactivateAll (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:12134)
+	at xX.terminate (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:12487)
+	at nM.terminate (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:120:1082)
+	at $s (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:402:11092)
+	at MessagePortMain.<anonymous> (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:402:7538)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+2026-01-04 21:49:39.242 [error] An error occurred when disposing the subscriptions for extension 'Gruntfuggly.todo-tree':
+2026-01-04 21:49:39.242 [error] AggregateError: Encountered errors while disposing of store
+	at Qi (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:822)
+	at j3._fn (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:18595)
+	at j3.dispose (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1261)
+	at xX._deactivate (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:14860)
+	at file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:12146
+	at Array.map (<anonymous>)
+	at xX._deactivateAll (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:12134)
+	at xX.terminate (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:12487)
+	at nM.terminate (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:120:1082)
+	at $s (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:402:11092)
+	at MessagePortMain.<anonymous> (file:///opt/vscodium/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:402:7538)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+2026-01-04 21:49:39.245 [info] Extension host with pid 18546 exiting with code 0

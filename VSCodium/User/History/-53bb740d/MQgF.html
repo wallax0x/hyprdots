@@ -1,0 +1,189 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ total_produtos | default('0') }}</h3>
+                    <p>Novos Pedidos</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <a href="{{ url_for('listarProdutos') }}" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    <p>Taxa de Rejeição</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <a href="#" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ total_usuarios | default('0') }}</h3>
+                    <p>Usuários Registrados</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <a href="{{ url_for('listarUsuario') }}" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>{{ total_categorias | default('0') }}</h3>
+                    <p>Categorias</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <a href="{{ url_for('listarCategoria') }}" class="small-box-footer">Mais info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        <section class="col-lg-7 connectedSortable">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-chart-pie mr-1"></i>
+                        Vendas (Por Categoria)
+                    </h3>
+                    <div class="card-tools">
+                        <ul class="nav nav-pills ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Área</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content p-0">
+                        <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+                            <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                        </div>
+                        <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                            <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="col-lg-5 connectedSortable">
+            <div class="card bg-gradient-primary">
+                <div class="card-header border-0">
+                    <h3 class="card-title">
+                        <i class="fas fa-map-marker-alt mr-1"></i>
+                        Visitantes
+                    </h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="world-map" style="height: 250px; width: 100%; text-align: center; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.3);">
+                        <span>Mapa de Visitantes (Requer JQVMap)</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <div class="text-white">Visitantes</div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="text-white">Online</div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="text-white">Vendas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // Configuração do Gráfico de Onda (Area Chart)
+        var canvas = document.getElementById('revenue-chart-canvas').getContext('2d');
+
+        var salesChartData = {
+            // Seus dados vindos do Python
+            labels: {{ labels_grafico | tojson }},
+            datasets: [
+                {
+                    label: 'Qtd Produtos',
+                    backgroundColor: 'rgba(60,141,188,0.5)', // Cor de preenchimento (transparente)
+                    borderColor: 'rgba(60,141,188,1)',       // Cor da linha
+                    pointRadius: 3,
+                    pointColor: 'rgba(60,141,188,1)',
+                    pointStrokeColor: '#c1c7d1',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: {{ data_grafico | tojson }},
+                    fill: true,     // <--- ISSO PREENCHE EMBAIXO DA LINHA
+                    tension: 0.4    // <--- ISSO FAZ A CURVA (ONDA)
+                }
+            ]
+        };
+
+        var salesChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: { grid: { display: false } },
+                y: { grid: { display: false } }
+            }
+        };
+
+        new Chart(canvas, {
+            type: 'line', // Tipo Linha
+            data: salesChartData,
+            options: salesChartOptions
+        });
+    
+</script>
+{% endblock %}

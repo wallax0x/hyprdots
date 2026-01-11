@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profissional.nome }} - Detalhes</title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0f2f5; min-height: 100vh; }
+        .profile-banner { height: 200px; background: linear-gradient(120deg, #0d6efd, #0dcaf0); border-radius: 0 0 20px 20px; margin-bottom: -100px; }
+
+        .main-card { border: none; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); background: rgba(255,255,255,0.95); overflow: hidden; }
+
+        .profile-img-container {
+            width: 160px; height: 160px;
+            margin: -6rem auto 0;
+            position: relative; z-index: 2;
+        }
+
+        .profile-avatar, .avatar-placeholder {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            border: 6px solid white;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .avatar-placeholder {
+            background: #e9ecef;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 5rem; color: #adb5bd;
+        }
+
+        .btn-pulse { 
+            background-color: #25D366; color: white; border: none; 
+            animation: pulse 2s infinite; font-weight: bold;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+            100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+        }
+
+        /* ESTRELAS DE AVALIAÇÃO */
+        .rating { display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; }
+        .rating input { display: none; }
+        .rating label {
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color .2s;
+        }
+        .rating input:checked ~ label,
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: #ffc107;
+        }
+
+        /* COMENTÁRIOS */
+        .comment-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 15px;
+            border-left: 4px solid #0d6efd;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+        <div class="container">
+            <a href="/" class="btn btn-light btn-sm rounded-pill fw-bold text-primary">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </a>
+            <span class="navbar-brand ms-3 fw-bold fs-5">Perfil Profissional</span>
+        </div>
+    </nav>
+
+    <!-- FLASH MESSAGES -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show">
+                        {{ message }}
+                        <button class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="profile-banner"></div>
+
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                
+                <div class="card main-card">
+                    <div class="card-body text-center pt-5">
+
+                        <!-- FOTO -->
+                        <div class="profile-img-container">
+                            {% if profissional.foto_perfil != 'default.png' %}
+                                <img src="{{ url_for('static', filename='uploads/' + profissional.foto_perfil) }}" class="profile-avatar">
+                            {% else %}
+                                <div class="avatar-placeholder"><i class="bi bi-person-fill"></i></div>
+                            {% endif %}
+                        </div>
+
+                        <!-- NOME -->
+                        <h2 class="mt-3 fw-bold text-dark">
+                            {{ profissional.nome }}
+                            <i class="bi bi-patch-check-fill text-primary"></i>
+                        </h2>
+
+                        <!-- PROFISSÃO -->
+                        <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill text-uppercase mb-2">
+                            {{ profissional.profissao }}
+                        </span>
+
+                        <!-- MÉDIA DE AVALIAÇÃO -->
+                        <div class="d-flex justify-content-center align-items-center gap-2 mb-4">
+                            <h3 class="text-warning fw-bold mb-0">{{ media }}</h3>
+
+                            <div class="text-warning fs-5">
+                                {% for i in range(1, 6) %}
+                                    {% if i <= media %}
+                                        <i class="bi bi-star-fill"></i>
+                                    {% elif i - media <= 0.5 %}
+                                        <i class="bi bi-star-half"></i>
+                                    {% else %}
+                                        <i class="bi bi-star"></i>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+
+                            <small class="text-muted">({{ qtd }} avaliações)</small>
+                        </div>
+
+
+                        <!-- SOBRE -->
+                        <div class="row g-4 text-start mt-2 mb-4">
+                            <div class="col-md-7">
+                                <h5 class="text-secondary fw-bold mb-3">Sobre</h5>
+                                <div class="p-3 bg-light rounded-3 shadow-sm border-start border-4 border-primary">
+                                    <p class="mb-0 text-muted">{{ profissional.descricao or "Sem descrição." }}</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="bg-light p-3 rounded-3 mb-2"><strong>📍 Local:</strong> {{ profissional.bairro }}</div>
+                                <div class="bg-light p-3 rounded-3"><strong>📧 Email:</strong> {{ profissional.email }}</div>
+                            </div>
+                        </div>
+
+                        
+                        {% if profissional.whatsapp %}
+                        <div class="d-grid gap-2 col-md-8 mx-auto mb-5">
+                            <a href="https://wa.me/55{{ profissional.whatsapp }}" target="_blank" class="btn btn-pulse btn-lg rounded-pill shadow py-3">
+                                <i class="bi bi-whatsapp"></i> ORÇAMENTO PELO WHATSAPP
+                            </a>
+                        </div>
+                        {% endif %}
+
+                        <hr class="my-5">
+
+                        <!-- AVALIAÇÕES -->
+                        <div class="text-start">
+                            <h3 class="fw-bold mb-4">
+                                <i class="bi bi-chat-heart-fill text-danger"></i> Avaliações dos Clientes
+                            </h3>
+
+                            {% if current_user.is_authenticated and current_user.tipo == 'cliente' %}
+                            <div class="card bg-light border-0 mb-5">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">Deixe sua avaliação</h5>
+
+                                    <form action="{{ url_for('avaliar', prof_id=profissional.id) }}" method="POST">
+
+                                        <div class="rating mb-3">
+                                            <input type="radio" id="star5" name="nota" value="5" required><label for="star5">★</label>
+                                            <input type="radio" id="star4" name="nota" value="4"><label for="star4">★</label>
+                                            <input type="radio" id="star3" name="nota" value="3"><label for="star3">★</label>
+                                            <input type="radio" id="star2" name="nota" value="2"><label for="star2">★</label>
+                                            <input type="radio" id="star1" name="nota" value="1"><label for="star1">★</label>
+                                        </div>
+
+                                        <textarea name="comentario" class="form-control mb-3" rows="3"
+                                            placeholder="Conte como foi sua experiência..." minlength="3" maxlength="300" required></textarea>
+
+                                        <button type="submit" class="btn btn-primary px-4">Enviar Avaliação</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            {% elif not current_user.is_authenticated %}
+                                <div class="alert alert-info">
+                                    Faça <a href="/login" class="fw-bold">Login como Cliente</a> para avaliar este profissional.
+                                </div>
+                            {% endif %}
+
+                            {% if avaliacoes %}
+                                {% for aval in avaliacoes %}
+                                <div class="comment-card">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <strong class="text-primary">{{ aval.cliente.nome }}</strong>
+                                        <div class="text-warning small">
+                                            {% for i in range(aval.nota) %}★{% endfor %}
+                                        </div>
+                                    </div>
+
+                                    <p class="mb-1 text-dark">{{ aval.comentario }}</p>
+                                    <small class="text-muted" style="font-size: 0.8rem;">
+                                        {{ aval.data.strftime('%d/%m/%Y') }}
+                                    </small>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-muted text-center py-4">
+                                    Este profissional ainda não tem avaliações. Seja o primeiro!
+                                </p>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

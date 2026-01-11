@@ -1,0 +1,49 @@
+/* ============= glass helpers ============= */
+@define-color glass-crust   alpha(@crust, 0.48);
+@define-color glass-mantle  alpha(@mantle, 0.44);
+@define-color glass-base    alpha(@base, 0.36);
+@define-color glass-surface alpha(@surface0, 0.28);
+
+/* ============= main colors (mais chamativo + fundos translúcidos) ============= */
+
+@define-color main-br        alpha(@subtext0, 0.80);
+@define-color main-bg        glass-crust;
+@define-color main-fg        alpha(@text, 0.98);
+
+/* accent mais "pop" — uso pink aqui para ficar chamativo.
+   Troque por @sapphire ou @blue se preferir um tom frio. */
+@define-color accent        alpha(@pink, 0.98);
+@define-color accent-strong alpha(@yellow, 1.00);
+
+@define-color hover-bg      alpha(@base, 0.42);
+@define-color hover-fg      alpha(@text, 0.86);
+@define-color outline       alpha(shade(@crust, 0.5), 0.60);
+
+/* ============= module colors (fundos com efeito vidro leve) ============= */
+
+@define-color workspaces    glass-mantle;
+@define-color temperature   glass-mantle;
+@define-color memory        glass-base;
+@define-color cpu           glass-surface;
+@define-color time          glass-surface;
+@define-color date          glass-base;
+@define-color tray          glass-mantle;
+@define-color volume        glass-mantle;
+@define-color backlight     glass-base;
+@define-color battery       glass-surface;
+
+/* ============= estados / realces ============= */
+
+@define-color warning       alpha(@yellow, 0.95);
+@define-color critical      alpha(@red, 0.95);
+@define-color charging      alpha(@green, 0.95);
+
+/* seleção / destaque suave (usar em workspace.active, botão selecionado, etc.) */
+@define-color sel-bg        alpha(@pink, 0.12);
+@define-color sel-br        alpha(@pink, 0.40);
+@define-color glow         alpha(@pink, 0.08);
+
+/* Ghost Gang (mantive suas escolhas) */
+@define-color speedy       @pink;
+@define-color bashful      @teal;
+@define-color pokey        @peach;

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Aleatório</title> <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+</head>
+<body>
+
+  <header>
+    <h1>Chat Vortex 🚀</h1>
+  </header>
+
+  <div id="lobby-container">
+    <h2>Como você quer conversar?</h2>
+    <button id="findTextChat">Só Mensagem</button>
+    <button id="findVideoChat">Mensagem e Vídeo</button>
+    
+    <div id="lobby-status-container">
+      <div id="loader" class="hidden"></div> <div id="lobby-status"></div> </div>
+  </div>
+
+  <div id="call-container">
+    <div id="video-container">
+      
+      <div class="video-wrapper">
+        <h3>Seu Vídeo</h3>
+        <video id="localVideo" autoplay playsinline muted></video>
+        <div id="local-controls" class="video-controls">
+          <button id="muteAudioBtn">Mutar</button>
+          <button id="stopVideoBtn">Parar Vídeo</button>
+        </div>
+      </div>
+
+      <div class="video-wrapper">
+        <h3>Vídeo do Parceiro</h3>
+        <video id="remoteVideo" autoplay playsinline></video>
+      </div>
+
+    </div>
+    <div id="chat-container">
+      <div id="status">Conectado</div>
+      <ul id="messages"></ul>
+
+      <form id="form" action="">
+        <input id="input" autocomplete="off" placeholder="Digite sua mensagem..." />
+        <button type="button" id="sendButton">Enviar</button> 
+        <button type="button" id="skipButton">Próximo</button>
+      </form>
+      
+    </div>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js"></script> 
+</body>
+</html>
